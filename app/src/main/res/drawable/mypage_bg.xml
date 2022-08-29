@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:top="-145dp" android:height="578dp" android:width="578dp" android:gravity="center_horizontal">
+        <shape android:shape="oval">
+            <solid android:color="#fce1ca"/>
+        </shape>
+    </item>
+
+    <item android:height="300dp" android:top="-25dp" android:drawable="@drawable/mypage_bg_figure"/>
+</layer-list>

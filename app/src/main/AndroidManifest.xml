@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.jica.iruda">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!--  Android 11에서 공유 대화 상자가 열리지 않습니다. 어떻게 수정해야 하나요?  -->
+    <queries>
+        <provider android:authorities="com.facebook.katana.provider.PlatformProvider" />
+    </queries>
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Iruda"
+        tools:targetApi="31">
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
+
+        <!--    페이스북 메타데이터    -->
+        <activity android:name="com.facebook.FacebookActivity"
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+
+        <!--    카카오    -->
+        <meta-data android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_key" />
+
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
+                <data android:host="oauth"
+                    android:scheme="@string/kakao_app_scheme" />
+            </intent-filter>
+        </activity>
+
+        <!--    네이버    -->
+<!--        <activity android:name="com.nhn.android.naverlogin.ui.OAuthCustomTabActivity"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.VIEW"/>-->
+<!--                <category android:name="android.intent.category.DEFAULT"/>-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+
+    <!--    스플래시    -->
+        <activity
+            android:name=".activities.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+
+
+        <!--    로그인    -->
+        <activity
+            android:name=".activities.LoginActivity"
+            android:exported="true" />
+
+        <!--    메인 - 습관리스트    -->
+        <activity
+            android:name=".activities.HabitListActivity"
+            android:exported="true" />
+
+        <!--    습관 작성    -->
+        <activity
+            android:name=".activities.RegisterHabitActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+        <!--    습관 상세    -->
+        <activity
+            android:name=".activities.HabitDetailActivity"
+            android:exported="true"/>
+
+        <!--    습관 일기 작성    -->
+        <activity
+            android:name=".activities.DiaryWriteActivity"
+            android:exported="true"/>
+
+        <!--    마이페이지    -->
+        <activity
+            android:name=".activities.MyPageActivity"
+            android:exported="true"/>
+
+    </application>
+
+</manifest>

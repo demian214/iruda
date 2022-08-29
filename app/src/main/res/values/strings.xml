@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Iruda</string>
+
+    <!--  LoginActivity  -->
+    <string name="text_login_btn_naver">네이버로 시작하기</string>
+    <string name="text_login_btn_facebook">페이스북으로 시작하기</string>
+    <string name="text_login_btn_google">구글로 시작하기</string>
+    <string name="text_login_btn_kakao">카카오로 시작하기</string>
+
+    <!--  페이스북 로그인  -->
+    <string name="facebook_app_id">1116300998976674</string>
+    <string name="fb_login_protocol_scheme">fb1116300998976674</string>
+    <string name="facebook_client_token">56789</string>
+
+    <!--  카카오 로그인  -->
+    <string name="kakao_app_key">1f3e1f8c744625cf6b49bdeb5c828269</string>
+    <string name="kakao_app_scheme">kakao1f3e1f8c744625cf6b49bdeb5c828269</string>
+
+    <!--  네이버 로그인  -->
+    <string name="naver_client_id">IkuyFZfor9FzFvj12DLh</string>
+    <string name="naver_client_secret">RYX_a6yiOh</string>
+    <string name="naver_client_name">Iruda</string>
+    <string name="message_login_info">회원가입 없이 소셜 계정을 통해 바로 이용 가능하며,\n첫 로그인 시 이용약관 및 개인정보처리방침에 동의하게 됩니다.</string>
+    <string name="app_name_kr">이루다</string>
+    <string name="text_empty_message">등록된 습관이 없습니다.</string>
+    <string name="text_mypage">이루다 행성</string>
+    <string name="text_register_habit">21일만에 나만의 새로운\n습관 루틴을 만들어요!</string>
+    <string name="hint_habit_title">새로운 습관 이름을 입력해주세요</string>
+    <string name="hint_habit_content">메모를 입력해주세요\n</string>
+    <string name="alram_setting">알림설정</string>
+    <string name="alram_time_setting">알람시간설정</string>
+    <string name="action_create">등록하기</string>
+    <string name="action_nothing">안함</string>
+    <string name="action_select">선택</string>
+    <string name="cancel">취소</string>
+    <string name="submit">완료</string>
+    <string name="how_was_today">오늘 습관은 어떠셨나요?</string>
+
+</resources>

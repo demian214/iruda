@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_activity_login"
+    android:gravity="bottom|center_vertical"
+    android:orientation="vertical"
+    tools:context=".activities.LoginActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="157dp"
+        app:srcCompat="@drawable/ic_logo" />
+
+    <Button
+        android:id="@+id/button_naver_login"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="46dp"
+        android:layout_marginRight="46dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bg_btn_login_naver"
+        android:drawableStart="@drawable/ic_naver"
+        android:drawablePadding="21dp"
+        android:elevation="6dp"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:text="@string/text_login_btn_naver"
+        android:textAlignment="textStart"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/button_facebook_login"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="46dp"
+        android:layout_marginRight="46dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bg_btn_login_facebook"
+        android:drawableStart="@drawable/ic_facebook"
+        android:drawablePadding="21dp"
+        android:elevation="6dp"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:text="@string/text_login_btn_facebook"
+        android:textAlignment="textStart"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/button_google_login"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="46dp"
+        android:layout_marginRight="46dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bg_btn_login_google"
+        android:drawableStart="@drawable/ic_google"
+        android:drawablePadding="21dp"
+        android:elevation="6dp"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:text="@string/text_login_btn_google"
+        android:textAlignment="textStart"
+        android:textColor="#393939"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/button_kakao_login"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="46dp"
+        android:layout_marginRight="46dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/bg_btn_login_kakao"
+        android:drawableStart="@drawable/ic_kakao"
+        android:drawablePadding="21dp"
+        android:elevation="6dp"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:text="@string/text_login_btn_kakao"
+        android:textAlignment="textStart"
+        android:textColor="#d9000000"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="52dp"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:includeFontPadding="false"
+        android:letterSpacing="-0.02"
+        android:text="@string/message_login_info"
+        android:textAlignment="center"
+        android:textColor="#616161"
+        android:textSize="10sp" />
+
+</LinearLayout>

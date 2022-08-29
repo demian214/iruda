@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/user/.gradle/caches/transforms-3/ffba61568a5de1ea6ed4ff6b0e3d4a2c/transformed/oauth-5.1.1/res/layout/nid_progress_dialog.xml" value="0.33" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable-ldpi/shape_login_btn_facebook.xml" value="0.248" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable-ldpi/shape_login_btn_google.xml" value="0.248" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable-ldpi/shape_login_btn_kakao.xml" value="0.248" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable-mdpi/bg_activity_login.xml" value="0.205" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable-mdpi/bg_box_input_time.xml" value="0.3295" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable-v24/bg_btn_login_facebook.xml" value="0.205" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable-v24/bg_btn_login_google.xml" value="0.3295" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable-v24/bg_btn_login_kakao.xml" value="0.3295" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable-v24/bg_btn_pass.xml" value="0.2945" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable-v24/facebook_login_btn_bg.xml" value="0.343" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable-v24/google_login_btn_bg.xml" value="0.343" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.367" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable-v24/kakao_login_btn_bg.xml" value="0.343" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable-v24/naver_login_btn_bg.xml" value="0.343" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable-v24/shape_login_btn_naver2.xml" value="0.255" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable-v24/shape_switch_track_off.xml" value="0.116" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable-xxxhdpi/shape_et_habit_memo.xml" value="0.3145" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable-xxxhdpi/shape_top_background.xml" value="0.3145" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/background.xml" value="0.302" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/bg_activity_register_habit.xml" value="0.205" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/bg_box_input_habit.xml" value="0.1545" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/bg_btn_dialog_picker_time.xml" value="0.309" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/bg_btn_diary_done.xml" value="0.2945" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/bg_btn_fail.xml" value="0.125" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/bg_btn_login_naver.xml" value="0.3295" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/bg_btn_submit.xml" value="0.2855" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/bg_date_tile.xml" value="0.328" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/bg_dialog_picker_time.xml" value="0.309" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/bg_diary_detail.xml" value="0.328" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/bg_diary_fail.xml" value="0.2945" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/bg_diary_img.xml" value="0.328" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/bg_diary_title.xml" value="0.328" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/bg_emoji.xml" value="0.2945" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/bg_emoji_box.xml" value="0.25" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/bg_emoji_list.xml" value="0.2945" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/bg_img_profile.xml" value="0.328" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/bg_item.xml" value="0.3295" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/bg_item_habit.xml" value="0.328" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/bg_list_habit.xml" value="0.328" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/bg_table_date.xml" value="0.328" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/circle_progressbar.xml" value="0.3525" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/divide_line.xml" value="0.3295" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/divide_line_12.xml" value="0.328" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/habit_detail_bg_triangle.xml" value="0.296" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_alarm_on.xml" value="0.2925" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_appbar_logo.xml" value="0.2925" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_arrow_right_off.xml" value="0.2925" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_arrow_right_on.xml" value="0.2925" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_baseline_chevron_right_24.xml" value="0.255" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_btn_add.xml" value="0.2925" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_btn_back.xml" value="0.3295" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_btn_date_view.xml" value="0.2925" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_btn_delete.xml" value="0.328" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_btn_emoji_view.xml" value="0.2925" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_btn_login_naver.xml" value="0.255" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_btn_naver.xml" value="0.255" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_btn_number_view.xml" value="0.2925" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_camera.xml" value="0.2925" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_dday_progress.xml" value="0.2925" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_facebook.xml" value="0.3295" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_facebook2.xml" value="0.3295" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_feather_check.xml" value="0.2925" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_floating_btn_add.xml" value="0.2925" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_google.xml" value="0.3295" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_kakao.xml" value="0.3295" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_launcher_background.xml" value="0.359" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_logo.xml" value="0.2905" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_mypage.xml" value="0.2925" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_naver.xml" value="0.255" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_newadd.xml" value="0.2925" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_refresh.xml" value="0.2925" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_share.xml" value="0.2925" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/ic_sns_share_btn.xml" value="0.328" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/layerlist_ic_login.xml" value="0.2215" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/login_btn_naver.xml" value="0.2965" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/logo.xml" value="0.359" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/mypage_bg.xml" value="0.296" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/mypage_bg_figure.xml" value="0.296" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/mypage_btn_level_guide.xml" value="0.2855" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/mypage_iv_level0.xml" value="0.1735" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/mypage_iv_level1.xml" value="0.2855" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/mypage_iv_level2.xml" value="0.2855" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/round_button.xml" value="0.366" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/selector_rb_emoji.xml" value="0.2835" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/selector_switch.xml" value="0.1" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/shape_btn_divide_line.xml" value="0.343" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/shape_divide_line.xml" value="0.3295" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/shape_et_habit_name.xml" value="0.3145" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/shape_habit_input_box.xml" value="0.3145" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/shape_input_btn.xml" value="0.3045" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/shape_login_btn_naver.xml" value="0.255" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/shape_rectangle_login_btn.xml" value="0.367" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/shape_switch_thumb.xml" value="0.116" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/shape_switch_track_on.xml" value="0.116" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/font/app_font.xml" value="0.3892307692307692" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout-v31/activity_habit_list.xml" value="0.36614583333333334" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout-v31/fragment_diary.xml" value="0.33" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_diary_write.xml" value="0.25" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_habit_detail.xml" value="0.5" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_habit_list.xml" value="0.2949438202247191" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_my_page.xml" value="0.25" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_register_habit.xml" value="0.22" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_splash.xml" value="0.33" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/date_item.xml" value="0.23086789226165028" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/fragment_diary.xml" value="0.5" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/fragment_time_picker.xml" value="0.1" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/habit_item.xml" value="0.5" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/item.xml" value="0.75" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/item_date.xml" value="0.75" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/item_habit.xml" value="0.44871794871794873" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/time_picker.xml" value="0.32546296296296295" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/toolbar_back.xml" value="0.25" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/menu/appbar_action.xml" value="0.22777777777777777" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/menu/menu_toolbar.xml" value="0.32546296296296295" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.16526610644257703" />
+      </ProjectState>
+    </option>
+  </component>
+</project>

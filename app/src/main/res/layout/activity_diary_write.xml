@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background2"
+    android:orientation="vertical"
+    tools:context=".activities.DiaryWriteActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="56dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/noto_sans_kr_bold"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:textColor="#262626"
+                android:letterSpacing="-0.02"
+                android:gravity="center_horizontal"
+                android:text="오늘 습관은 어떠셨나요?"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:elevation="6dp"
+                android:background="@drawable/bg_emoji_box">
+
+
+                <ImageView
+                    android:id="@+id/image_selected_emoji"
+                    android:layout_width="68dp"
+                    android:layout_height="68dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="18dp"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/bg_emoji"
+                    android:padding="11dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout4"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/bg_emoji_list"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="18dp"
+                    android:paddingEnd="18dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/image_selected_emoji">
+
+
+                    <RadioGroup
+                        android:id="@+id/rg_emoji"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        android:gravity="center">
+
+                        <RadioButton
+                            android:id="@+id/rb1"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_margin="6dp"
+                            android:background="@drawable/emoji56"
+                            android:backgroundTint="@color/selector_emoji"
+                            android:backgroundTintMode="screen"
+                            android:button="@null" />
+                        <RadioButton
+                            android:id="@+id/rb2"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_margin="6dp"
+                            android:background="@drawable/emoji07"
+                            android:backgroundTint="@color/selector_emoji"
+                            android:backgroundTintMode="screen"
+                            android:button="@null" />
+                        <RadioButton
+                            android:id="@+id/rb3"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_margin="6dp"
+                            android:background="@drawable/emoji79"
+                            android:backgroundTint="@color/selector_emoji"
+                            android:backgroundTintMode="screen"
+                            android:button="@null" />
+                        <RadioButton
+                            android:id="@+id/rb4"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_margin="6dp"
+                            android:background="@drawable/emoji41"
+                            android:backgroundTint="@color/selector_emoji"
+                            android:backgroundTintMode="screen"
+                            android:button="@null" />
+                        <RadioButton
+                            android:id="@+id/rb5"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_margin="6dp"
+                            android:background="@drawable/emoji54"
+                            android:backgroundTint="@color/selector_emoji"
+                            android:backgroundTintMode="screen"
+                            android:button="@null" />
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/button_reload_emoji"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="#00000000"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:srcCompat="@drawable/ic_refresh" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="30dp"
+                android:minHeight="130dp"
+                android:background="@drawable/bg_item_habit"
+                android:elevation="6dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:minHeight="98dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp">
+
+                    <EditText
+                        android:id="@+id/edit_diary_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:includeFontPadding="false"
+                        android:hint="오늘 습관 일지를 적어주세요"
+                        android:inputType="textMultiLine"
+                        android:textColorHint="#b4b4b4"
+                        android:textSize="14sp"
+                        android:textColor="#393939"
+                        android:letterSpacing="-0.02"/>
+
+                </LinearLayout>
+
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/button_add_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:layout_margin="16dp"
+                    android:paddingTop="38dp"
+                    android:visibility="visible"
+                    android:gravity="top|center_horizontal"
+                    android:drawableTop="@drawable/ic_camera"
+                    android:background="@drawable/bg_emoji_list"
+                    android:drawablePadding="11dp"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:textSize="14sp"
+                    android:textColor="#b4b4b4"
+                    android:letterSpacing="-0.02"
+                    android:text="인증샷 등록하기" />
+
+                <ImageView
+                    android:id="@+id/image_diary"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:visibility="invisible"
+                    android:layout_margin="16dp"
+                    android:scaleType="centerCrop"
+                    android:clipToOutline="true"
+                    android:background="@drawable/bg_diary_img"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/landscape" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_emoji_box"
+                android:elevation="6dp">
+
+
+                <LinearLayout
+                    android:id="@+id/linearLayout5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_feather_check" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7dp"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:gravity="center_horizontal"
+                        android:includeFontPadding="false"
+                        android:letterSpacing="-0.02"
+                        android:text="오늘 습관 달성 여부를 체크해주세요"
+                        android:textColor="#262626"
+                        android:textSize="16sp"
+                        android:textStyle="normal" />
+
+                </LinearLayout>
+
+                    <RadioGroup
+                        android:id="@+id/rg_goal_state"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <RadioButton
+                            android:id="@+id/rb_fail"
+                            android:layout_width="0dp"
+                            android:layout_height="56dp"
+                            android:button="@null"
+                            android:layout_marginTop="22dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginBottom="30dp"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:elevation="6dp"
+                            android:fontFamily="@font/noto_sans_kr_medium"
+                            android:textSize="16sp"
+                            android:textColor="@color/selector_text_pail"
+                            android:letterSpacing="-0.02"
+                            android:background="@drawable/bg_btn_fail"
+                            android:text="미달성" />
+                        <RadioButton
+                            android:id="@+id/rb_success"
+                            android:layout_width="0dp"
+                            android:layout_height="56dp"
+                            android:button="@null"
+                            android:layout_marginTop="22dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="30dp"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:elevation="6dp"
+                            android:fontFamily="@font/noto_sans_kr_medium"
+                            android:textSize="16sp"
+                            android:textColor="@color/selector_text_pass"
+                            android:letterSpacing="-0.02"
+                            android:background="@drawable/bg_btn_pass"
+                            android:text="달성"/>
+                    </RadioGroup>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button_submit_diary"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="120dp"
+                android:background="@drawable/bg_btn_diary_done"
+                android:elevation="6dp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:textSize="16sp"
+                android:textColor="#d33f27"
+                android:letterSpacing="-0.02"
+                android:text="등록하기" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#00000000"
+        app:contentInsetStart="0dp">
+
+        <ImageButton
+            android:id="@+id/button_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:src="@drawable/ic_back"/>
+
+        <TextView
+            android:id="@+id/text_habit_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.02"
+            android:text="아침 5시에 일어나기"
+            android:textColor="#d33f27"
+            android:textSize="16sp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+
+
+</FrameLayout>

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.RegisterHabitActivity">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_activity_register_habit"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="51.3dp"
+                    android:layout_marginTop="112dp"
+                    android:adjustViewBounds="true"
+                    app:srcCompat="@drawable/ic_logo" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="49dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:gravity="center_horizontal"
+                    android:includeFontPadding="false"
+                    android:letterSpacing="-0.02"
+                    android:text="@string/text_register_habit"
+                    android:textAlignment="center"
+                    android:textColor="#393939"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="115dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/bg_box_input_habit"
+                    android:elevation="6dp"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/editHabitTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="18dp"
+                        android:ems="10"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:hint="@string/hint_habit_title"
+                        android:includeFontPadding="false"
+                        android:inputType="text"
+                        android:letterSpacing="-0.02"
+                        android:textColor="#393939"
+                        android:textColorHint="#b4b4b4"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/editHabitContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="18dp"
+                        android:ems="10"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:hint="@string/hint_habit_content"
+                        android:includeFontPadding="false"
+                        android:inputType="textMultiLine"
+                        android:letterSpacing="-0.02"
+                        android:lines="2"
+                        android:textColor="#393939"
+                        android:textColorHint="#b4b4b4"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="37dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/bg_box_input_time"
+                    android:elevation="6dp"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="18dp"
+                            android:layout_marginBottom="18dp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
+                            android:includeFontPadding="false"
+                            android:letterSpacing="-0.02"
+                            android:text="@string/alram_setting"
+                            android:textColor="#393939"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/switchAlarm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="4dp"
+                            android:checked="false"
+                            android:minHeight="48dp"
+                            android:thumb="@drawable/shape_switch_thumb"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:switchMinWidth="61dp"
+                            app:track="@drawable/selector_switch" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textAlarm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="18dp"
+                            android:layout_marginBottom="18dp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
+                            android:includeFontPadding="false"
+                            android:letterSpacing="-0.02"
+                            android:text="@string/alram_time_setting"
+                            android:textColor="@color/disabled_text"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <Button
+                            android:id="@+id/buttonTimePicker"
+                            android:layout_width="wrap_content"
+                            android:minWidth="81dp"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="18dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="18dp"
+                            android:background="@color/transparent"
+                            android:clickable="false"
+                            android:drawableEnd="@drawable/ic_arrow_right_off"
+                            android:drawablePadding="8dp"
+                            android:elegantTextHeight="true"
+                            android:fontFamily="@font/noto_sans_kr_regular"
+                            android:gravity="right|center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="@string/action_nothing"
+                            android:textColor="@color/disabled_text"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/buttonCreate"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="69dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="72dp"
+                    android:background="@drawable/bg_btn_submit"
+                    android:elevation="6dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:letterSpacing="-0.02"
+                    android:text="@string/action_create"
+                    android:textColor="@color/red_peach"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/transparent"
+            app:contentInsetStart="0dp">
+
+            <ImageButton
+                android:id="@+id/buttonBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:src="@drawable/ic_back"/>
+        </androidx.appcompat.widget.Toolbar>
+
+</FrameLayout>

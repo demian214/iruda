@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!--  -2dp : 해당 방면 테두리 지우기  -->
+    <item android:bottom="-2dp" android:left="-2dp" android:right="-2dp">
+        <shape android:shape="rectangle">
+            <stroke android:width="1dp" android:color="#707070" />
+        </shape>
+    </item>
+
+    <item>
+        <!--    rotate : 세로로 회전    -->
+        <rotate android:visible="true"
+            android:fromDegrees="90">
+            <shape android:shape="line">
+                <stroke android:width="1dp" android:color="#707070"/>
+            </shape>
+        </rotate>
+    </item>
+</layer-list>

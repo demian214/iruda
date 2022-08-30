@@ -17,7 +17,6 @@ import com.jica.iruda.model.Habit;
 import com.jica.iruda.model.User;
 import com.jica.iruda.utilities.Constants;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -82,7 +81,7 @@ public class RegisterHabitActivity extends AppCompatActivity implements TimePick
 
     private void goToHabitListActivity(){
         Intent intent = new Intent(this, HabitListActivity.class);
-        intent.putExtra(Constants.USER, (Serializable) currentUser);
+        intent.putExtra(Constants.USER, currentUser);
         startActivity(intent);
         finish();
     }
@@ -95,6 +94,7 @@ public class RegisterHabitActivity extends AppCompatActivity implements TimePick
             binding.editHabitContent.getText().toString().trim(),
             LocalDateTime.now().toString(),
             alramTime);
+
 
         database.collection(Constants.USERS)
                 .document(uid)

@@ -53,7 +53,8 @@ public class HabitListActivity extends AppCompatActivity implements OnHabitItemC
 
     private void init(){
         Intent intent = getIntent();
-        currentUser = (User) intent.getSerializableExtra("user");
+        currentUser = (User) intent.getSerializableExtra(Constants.USER);
+
         binding.textUserName.setText(currentUser.getName());
 
         new DownloadFilesTask().execute(currentUser.getProfileImg());
@@ -111,6 +112,7 @@ public class HabitListActivity extends AppCompatActivity implements OnHabitItemC
 
     private void goToRegisterHabitActivity(){
         Intent intent = new Intent(getApplicationContext(), RegisterHabitActivity.class);
+        intent.putExtra(Constants.USER, currentUser);
         startActivity(intent);
         finish();
     }

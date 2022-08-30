@@ -5,7 +5,7 @@
     android:gravity="center"
     android:orientation="vertical">
     <TextView
-        android:id="@+id/textDiaryDate"
+        android:id="@+id/textDiaryIndex"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:gravity="center"
@@ -14,7 +14,6 @@
         android:fontFamily="@font/noto_sans_kr_regular"
         android:textStyle="normal"
         android:textSize="18sp"
-        android:textColor="#929292"
-        android:text="1"/>
+        android:textColor="#929292"/>
 
 </LinearLayout>

@@ -1,31 +1,29 @@
 package com.jica.iruda.model;
 
-import java.time.LocalDateTime;
-
 public class Diary {
-    private String emogi;               // 이모지
+    private int emogiIndex;             // 이모지
     private String content;             // 내용
     private String contentImg;          // 사진
     private boolean achievementState;   // 달성 여부
-    private LocalDateTime createTime;   // 생성 시간
+    private String createTime;   // 생성 시간
 
     public Diary() {
     }
 
-    public Diary(String emogi, String content, String contentImg, boolean achievementState, LocalDateTime createTime) {
-        this.emogi = emogi;
+    public Diary(int emogiIndex, String content, String contentImg, boolean achievementState, String createTime) {
+        this.emogiIndex = emogiIndex;
         this.content = content;
         this.contentImg = contentImg;
         this.achievementState = achievementState;
         this.createTime = createTime;
     }
 
-    public String getEmogi() {
-        return emogi;
+    public int getEmogiIndex() {
+        return emogiIndex;
     }
 
-    public void setEmogi(String emogi) {
-        this.emogi = emogi;
+    public void setEmogiIndex(int emogiIndex) {
+        this.emogiIndex = emogiIndex;
     }
 
     public String getContent() {
@@ -52,11 +50,11 @@ public class Diary {
         this.achievementState = achievementState;
     }
 
-    public LocalDateTime getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(LocalDateTime createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 }

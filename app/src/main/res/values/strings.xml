@@ -35,5 +35,12 @@
     <string name="cancel">취소</string>
     <string name="submit">완료</string>
     <string name="how_was_today">오늘 습관은 어떠셨나요?</string>
+    <string name="action_submit_diary">등록하기</string>
+    <string name="text_goal_info">오늘 습관 달성 여부를 체크해주세요</string>
+    <string name="text_pail">미달성</string>
+    <string name="text_success">달성</string>
+    <string name="text_input_image">인증샷 등록하기</string>
+    <string name="input_diary_content">오늘 습관 일지를 적어주세요</string>
+    <string name="write_diary_title">오늘 습관은 어떠셨나요?</string>
 
 </resources>

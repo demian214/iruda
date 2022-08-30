@@ -14,7 +14,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="56dp"
             android:orientation="vertical">
 
@@ -22,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/noto_sans_kr_bold"
                 android:textStyle="bold"
@@ -30,7 +30,7 @@
                 android:textColor="#262626"
                 android:letterSpacing="-0.02"
                 android:gravity="center_horizontal"
-                android:text="오늘 습관은 어떠셨나요?"/>
+                android:text="@string/write_diary_title"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -43,7 +43,7 @@
 
 
                 <ImageView
-                    android:id="@+id/image_selected_emoji"
+                    android:id="@+id/imageSelectedEmoji"
                     android:layout_width="68dp"
                     android:layout_height="68dp"
                     android:layout_marginStart="16dp"
@@ -57,7 +57,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
-                    android:id="@+id/linearLayout4"
+                    android:id="@+id/linearLayout"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_marginStart="12dp"
@@ -71,73 +71,80 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toEndOf="@+id/image_selected_emoji">
+                    app:layout_constraintStart_toEndOf="@+id/imageSelectedEmoji">
 
-
-                    <RadioGroup
-                        android:id="@+id/rg_emoji"
-                        android:layout_width="match_parent"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerviewEmoji"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_gravity="center"
-                        android:gravity="center">
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        android:orientation="horizontal"/>
 
-                        <RadioButton
-                            android:id="@+id/rb1"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_margin="6dp"
-                            android:background="@drawable/emoji56"
-                            android:backgroundTint="@color/selector_emoji"
-                            android:backgroundTintMode="screen"
-                            android:button="@null" />
-                        <RadioButton
-                            android:id="@+id/rb2"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_margin="6dp"
-                            android:background="@drawable/emoji07"
-                            android:backgroundTint="@color/selector_emoji"
-                            android:backgroundTintMode="screen"
-                            android:button="@null" />
-                        <RadioButton
-                            android:id="@+id/rb3"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_margin="6dp"
-                            android:background="@drawable/emoji79"
-                            android:backgroundTint="@color/selector_emoji"
-                            android:backgroundTintMode="screen"
-                            android:button="@null" />
-                        <RadioButton
-                            android:id="@+id/rb4"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_margin="6dp"
-                            android:background="@drawable/emoji41"
-                            android:backgroundTint="@color/selector_emoji"
-                            android:backgroundTintMode="screen"
-                            android:button="@null" />
-                        <RadioButton
-                            android:id="@+id/rb5"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_margin="6dp"
-                            android:background="@drawable/emoji54"
-                            android:backgroundTint="@color/selector_emoji"
-                            android:backgroundTintMode="screen"
-                            android:button="@null" />
-                    </RadioGroup>
+<!--                    <RadioGroup-->
+<!--                        android:id="@+id/rg_emoji"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:gravity="center">-->
+
+
+<!--                        <RadioButton-->
+<!--                            android:id="@+id/rb1"-->
+<!--                            android:layout_width="24dp"-->
+<!--                            android:layout_height="24dp"-->
+<!--                            android:layout_margin="6dp"-->
+<!--                            android:background="@drawable/emoji56"-->
+<!--                            android:backgroundTint="@color/selector_emoji"-->
+<!--                            android:backgroundTintMode="screen"-->
+<!--                            android:button="@null" />-->
+<!--                        <RadioButton-->
+<!--                            android:id="@+id/rb2"-->
+<!--                            android:layout_width="24dp"-->
+<!--                            android:layout_height="24dp"-->
+<!--                            android:layout_margin="6dp"-->
+<!--                            android:background="@drawable/emoji07"-->
+<!--                            android:backgroundTint="@color/selector_emoji"-->
+<!--                            android:backgroundTintMode="screen"-->
+<!--                            android:button="@null" />-->
+<!--                        <RadioButton-->
+<!--                            android:id="@+id/rb3"-->
+<!--                            android:layout_width="24dp"-->
+<!--                            android:layout_height="24dp"-->
+<!--                            android:layout_margin="6dp"-->
+<!--                            android:background="@drawable/emoji79"-->
+<!--                            android:backgroundTint="@color/selector_emoji"-->
+<!--                            android:backgroundTintMode="screen"-->
+<!--                            android:button="@null" />-->
+<!--                        <RadioButton-->
+<!--                            android:id="@+id/rb4"-->
+<!--                            android:layout_width="24dp"-->
+<!--                            android:layout_height="24dp"-->
+<!--                            android:layout_margin="6dp"-->
+<!--                            android:background="@drawable/emoji41"-->
+<!--                            android:backgroundTint="@color/selector_emoji"-->
+<!--                            android:backgroundTintMode="screen"-->
+<!--                            android:button="@null" />-->
+<!--                        <RadioButton-->
+<!--                            android:id="@+id/rb5"-->
+<!--                            android:layout_width="24dp"-->
+<!--                            android:layout_height="24dp"-->
+<!--                            android:layout_margin="6dp"-->
+<!--                            android:background="@drawable/emoji54"-->
+<!--                            android:backgroundTint="@color/selector_emoji"-->
+<!--                            android:backgroundTintMode="screen"-->
+<!--                            android:button="@null" />-->
+<!--                    </RadioGroup>-->
 
                 </LinearLayout>
 
                 <ImageButton
-                    android:id="@+id/button_reload_emoji"
+                    android:id="@+id/buttonReload"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginEnd="16dp"
-                    android:background="#00000000"
-                    app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
+                    android:background="@color/transparent"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:srcCompat="@drawable/ic_refresh" />
 
@@ -166,12 +173,12 @@
                     android:layout_marginEnd="20dp">
 
                     <EditText
-                        android:id="@+id/edit_diary_content"
+                        android:id="@+id/inputDiaryContent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/noto_sans_kr_regular"
                         android:includeFontPadding="false"
-                        android:hint="오늘 습관 일지를 적어주세요"
+                        android:hint="@string/input_diary_content"
                         android:inputType="textMultiLine"
                         android:textColorHint="#b4b4b4"
                         android:textSize="14sp"
@@ -180,41 +187,48 @@
 
                 </LinearLayout>
 
-
-
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                <Button
-                    android:id="@+id/button_add_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="140dp"
-                    android:layout_margin="16dp"
-                    android:paddingTop="38dp"
-                    android:visibility="visible"
-                    android:gravity="top|center_horizontal"
-                    android:drawableTop="@drawable/ic_camera"
-                    android:background="@drawable/bg_emoji_list"
-                    android:drawablePadding="11dp"
-                    android:includeFontPadding="false"
-                    android:fontFamily="@font/noto_sans_kr_regular"
-                    android:textSize="14sp"
-                    android:textColor="#b4b4b4"
-                    android:letterSpacing="-0.02"
-                    android:text="인증샷 등록하기" />
+                    <ImageView
+                        android:id="@+id/inputImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:layout_margin="16dp"
+                        android:scaleType="centerCrop"
+                        android:clipToOutline="true"
+                        android:background="@drawable/bg_emoji_list"
+                        android:adjustViewBounds="true"/>
 
-                <ImageView
-                    android:id="@+id/image_diary"
-                    android:layout_width="match_parent"
-                    android:layout_height="140dp"
-                    android:visibility="invisible"
-                    android:layout_margin="16dp"
-                    android:scaleType="centerCrop"
-                    android:clipToOutline="true"
-                    android:background="@drawable/bg_diary_img"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/landscape" />
+                    <LinearLayout
+                        android:id="@+id/linearLayoutAddImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:gravity="center_horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/ic_camera"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="11dp"
+                            android:includeFontPadding="false"
+                            android:fontFamily="@font/noto_sans_kr_regular"
+                            android:textSize="14sp"
+                            android:textColor="#b4b4b4"
+                            android:letterSpacing="-0.02"
+                            android:text="@string/text_input_image"/>
+                    </LinearLayout>
+
+
+
                 </FrameLayout>
             </LinearLayout>
 
@@ -229,7 +243,6 @@
 
 
                 <LinearLayout
-                    android:id="@+id/linearLayout5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -250,20 +263,21 @@
                         android:gravity="center_horizontal"
                         android:includeFontPadding="false"
                         android:letterSpacing="-0.02"
-                        android:text="오늘 습관 달성 여부를 체크해주세요"
-                        android:textColor="#262626"
+                        android:text="@string/text_goal_info"
+                        android:textColor="@color/bold_text"
                         android:textSize="16sp"
                         android:textStyle="normal" />
 
                 </LinearLayout>
 
                     <RadioGroup
-                        android:id="@+id/rg_goal_state"
+                        android:id="@+id/rgGoalCheck"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <RadioButton
-                            android:id="@+id/rb_fail"
+                            android:id="@+id/rbFail"
                             android:layout_width="0dp"
                             android:layout_height="56dp"
                             android:button="@null"
@@ -278,9 +292,10 @@
                             android:textColor="@color/selector_text_pail"
                             android:letterSpacing="-0.02"
                             android:background="@drawable/bg_btn_fail"
-                            android:text="미달성" />
+                            android:text="@string/text_pail" />
+
                         <RadioButton
-                            android:id="@+id/rb_success"
+                            android:id="@+id/rbSuccess"
                             android:layout_width="0dp"
                             android:layout_height="56dp"
                             android:button="@null"
@@ -296,13 +311,13 @@
                             android:textColor="@color/selector_text_pass"
                             android:letterSpacing="-0.02"
                             android:background="@drawable/bg_btn_pass"
-                            android:text="달성"/>
+                            android:text="@string/text_success"/>
                     </RadioGroup>
 
             </LinearLayout>
 
             <Button
-                android:id="@+id/button_submit_diary"
+                android:id="@+id/buttonSubmitDiary"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
                 android:layout_marginStart="16dp"
@@ -315,7 +330,7 @@
                 android:textSize="16sp"
                 android:textColor="#d33f27"
                 android:letterSpacing="-0.02"
-                android:text="등록하기" />
+                android:text="@string/action_submit_diary" />
 
         </LinearLayout>
 
@@ -329,21 +344,20 @@
         app:contentInsetStart="0dp">
 
         <ImageButton
-            android:id="@+id/button_back"
+            android:id="@+id/buttonBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#00000000"
+            android:background="@color/transparent"
             android:src="@drawable/ic_back"/>
 
         <TextView
-            android:id="@+id/text_habit_title"
+            android:id="@+id/textHabitTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
             android:letterSpacing="-0.02"
-            android:text="아침 5시에 일어나기"
-            android:textColor="#d33f27"
+            android:textColor="@color/red_peach"
             android:textSize="16sp" />
 
     </androidx.appcompat.widget.Toolbar>

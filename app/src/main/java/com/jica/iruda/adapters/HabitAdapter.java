@@ -60,7 +60,7 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.ViewHolder> 
             itemBinding.getRoot().setOnClickListener(view -> {
                 int position = getAdapterPosition();
 
-                if(itemView != null){
+                if(itemBinding != null){
                     listener.onHabitClick(ViewHolder.this, view, position);
                 }
             });

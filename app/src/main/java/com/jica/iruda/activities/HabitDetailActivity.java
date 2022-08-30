@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class HabitDetailActivity extends AppCompatActivity implements OnDiaryItemClickListener{
     private static final String TAG = "HabitDetailActivity";
@@ -26,7 +27,7 @@ public class HabitDetailActivity extends AppCompatActivity implements OnDiaryIte
     private User currentUser;
     private Habit currentHabit;
     private DiaryAdapter adapter;
-
+    private ArrayList<Diary> dates;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +55,12 @@ public class HabitDetailActivity extends AppCompatActivity implements OnDiaryIte
             binding.container.setVisibility(View.GONE);
         }
 
-//        ArrayList<Diary> dates = new ArrayList<>();
-//        Diary diary = new Diary();
-//        adapter = new DiaryAdapter(dates, this);
-//        binding.recyclerViewDate.setAdapter(adapter);
+        dates = new ArrayList<>();
+        for (int i=0; i<21; i++){
+            dates.add(i, new Diary());
+        }
+        adapter = new DiaryAdapter(dates, this);
+        binding.recyclerViewDate.setAdapter(adapter);
     }
 
     private String getDday(LocalDate creatTime){
@@ -83,7 +86,9 @@ public class HabitDetailActivity extends AppCompatActivity implements OnDiaryIte
 
     @Override
     public void onDiaryClick(DiaryAdapter.ViewHolder viewHolder, View view, int position) {
-        Diary item = adapter.getItem(position);
+        if (adapter.getItem(position) != null){
+            Diary item = adapter.getItem(position);
+        }
     }
 
     private void setListeners(){
@@ -119,6 +124,7 @@ public class HabitDetailActivity extends AppCompatActivity implements OnDiaryIte
     private void goToDiaryWriteActivity(){
         Intent intent = new Intent(this, DiaryWriteActivity.class);
         intent.putExtra(Constants.USER, currentUser);
+        intent.putExtra(Constants.HABIT, currentHabit);
         startActivity(intent);
         finish();
     }

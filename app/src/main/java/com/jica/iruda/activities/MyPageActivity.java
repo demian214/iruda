@@ -5,59 +5,44 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.jica.iruda.R;
 import com.jica.iruda.databinding.ActivityMyPageBinding;
 import com.jica.iruda.model.User;
+import com.jica.iruda.utilities.Constants;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class MyPageActivity extends AppCompatActivity implements View.OnClickListener {
+public class MyPageActivity extends AppCompatActivity{
 
     private ActivityMyPageBinding binding;
-    Intent intent;
+    private User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMyPageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        binding.buttonBack.setOnClickListener(this);
-        binding.buttonLevelInfo.setOnClickListener(this);
-
-        initView();
+        init();
+        setListeners();
     }
 
-    private void initView(){
-        intent = getIntent();
-        User user = (User) intent.getSerializableExtra("user");
-        if (user != null){
-            binding.textName.setText(user.getName());
-
-            new DownloadFilesTask().execute(user.getProfileImg());
-            Log.d("TAG", user.getProfileImg());
+    private void init(){
+        Intent intent = getIntent();
+        currentUser = (User) intent.getSerializableExtra(Constants.USER);
+        if (currentUser != null){
+            binding.textName.setText(currentUser.getName());
+            new DownloadFilesTask().execute(currentUser.getProfileImg());
         }
         binding.imageProfile.setClipToOutline(true);
     }
 
-    @Override
-    public void onClick(View view) {
-        int curId = view.getId();
-
-        switch (curId){
-            case R.id.button_back:
-                onBackPressed();
-                break;
-            case R.id.buttonLevelInfo:
-                break;
-        }
+    private void setListeners(){
+        binding.buttonBack.setOnClickListener(view -> onBackPressed());
+        binding.buttonLevelInfo.setOnClickListener(view -> {});
     }
 
     private class DownloadFilesTask extends AsyncTask<String, Void, Bitmap> {
@@ -90,7 +75,9 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void goToHabitListActivity(){
-        startActivity(intent.setClass(this, HabitListActivity.class));
+        Intent intent = new Intent(this, HabitListActivity.class);
+        intent.putExtra(Constants.USER, currentUser);
+        startActivity(intent);
         finish();
     }
 }

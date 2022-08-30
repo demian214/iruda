@@ -101,8 +101,8 @@
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/font/app_font.xml" value="0.3892307692307692" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout-v31/activity_habit_list.xml" value="0.36614583333333334" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout-v31/fragment_diary.xml" value="0.33" />
-        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_diary_write.xml" value="0.25" />
-        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_habit_detail.xml" value="0.5" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_diary_write.xml" value="0.33" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_habit_detail.xml" value="0.33493150684931505" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_habit_list.xml" value="0.2949438202247191" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_main.xml" value="0.33" />
@@ -110,6 +110,7 @@
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_register_habit.xml" value="0.22" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_splash.xml" value="0.33" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/date_item.xml" value="0.23086789226165028" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/emoji_item.xml" value="0.20820863616930313" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/fragment_diary.xml" value="0.5" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/fragment_time_picker.xml" value="0.1" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/habit_item.xml" value="0.5" />

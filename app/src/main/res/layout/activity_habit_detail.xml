@@ -157,13 +157,135 @@
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="5"/>
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragmentDiary"
-                android:name="com.jica.iruda.fragments.DiaryFragment"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="37dp"
-                android:minHeight="29dp" />
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginTop="37dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <View
+                            android:layout_width="26dp"
+                            android:layout_height="22dp"
+                            android:layout_marginBottom="-12dp"
+                            android:background="@drawable/habit_detail_bg_triangle"/>
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:background="@drawable/bg_diary_title">
+
+                            <TextView
+                                android:id="@+id/textDiaryDay"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="15dp"
+                                android:fontFamily="@font/noto_sans_kr_medium"
+                                android:gravity="center_horizontal"
+                                android:includeFontPadding="false"
+                                android:letterSpacing="-0.02"
+                                android:textColor="@color/bold_text"
+                                android:textSize="18sp"
+                                android:textStyle="normal"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/imageView"
+                                android:layout_width="18dp"
+                                android:layout_height="10dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/textDiaryDay"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/divide_line_12" />
+
+                            <TextView
+                                android:id="@+id/textDiaryDate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_sans_kr_regular"
+                                android:gravity="center"
+                                android:includeFontPadding="false"
+                                android:letterSpacing="-0.02"
+                                android:textColor="@color/secondary_text"
+                                android:textSize="12sp"
+                                android:textStyle="normal"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/imageView"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/imageEmoji"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_marginEnd="16dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="16dp"
+                        android:minHeight="130dp"
+                        android:background="@drawable/bg_diary_detail"
+                        android:elevation="6dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textDiaryContent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minHeight="114dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
+                            android:includeFontPadding="false"
+                            android:textStyle="normal"
+                            android:textSize="14sp"
+                            android:textColor="#393939"
+                            android:letterSpacing="-0.02"/>
+
+                        <ImageView
+                            android:id="@+id/imageDiary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible"
+                            android:layout_margin="16dp"
+                            android:clipToOutline="true"
+                            android:background="@drawable/bg_diary_img"
+                            android:foreground="@drawable/bg_diary_img"
+                            android:adjustViewBounds="true" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </FrameLayout>
 
             <Button
                 android:id="@+id/buttonDiaryWrite"
@@ -172,6 +294,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginBottom="72dp"
                 android:background="@drawable/bg_btn_submit"
                 android:drawableStart="@drawable/ic_feather_check"
@@ -180,7 +303,7 @@
                 android:fontFamily="@font/noto_sans_kr_medium"
                 android:gravity="left|center_vertical"
                 android:letterSpacing="-0.02"
-                android:paddingLeft="95dp"
+                android:paddingStart="95dp"
                 android:text="@string/how_was_today"
                 android:textColor="@color/red_peach" />
         </LinearLayout>

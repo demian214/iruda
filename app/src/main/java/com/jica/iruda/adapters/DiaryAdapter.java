@@ -32,7 +32,7 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Diary item = items.get(position);
-        holder.setItem(item);
+        holder.setItem(item, position);
     }
 
     @Override
@@ -61,7 +61,6 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder> 
         if(listener != null){
             listener.onDiaryClick(viewHolder, view, position);
         }
-
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -81,8 +80,8 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder> 
             });
         }
 
-        public void setItem(Diary item){
-            binding.textDiaryDate.setText(item.getCreateTime()+"");
+        public void setItem(Diary item, int position){
+            binding.textDiaryIndex.setText(++position + "");
         }
     }
 }

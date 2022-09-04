@@ -10,7 +10,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -115,7 +116,7 @@
                         app:srcCompat="@drawable/ic_alarm_on" />
 
                     <TextView
-                        android:id="@+id/textAlramTime"
+                        android:id="@+id/textAlarmTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="3dp"
@@ -129,8 +130,8 @@
 
                 </LinearLayout>
 
-                <ImageButton
-                    android:id="@+id/buttonConvertView"
+                <ImageView
+                    android:id="@+id/imageConvertView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="59dp"
@@ -138,7 +139,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_emoji" />
+                    android:src="@drawable/ic_emoji" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -149,6 +150,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/bg_table_date"
+                android:overScrollMode="never"
                 android:elevation="6dp"
                 android:paddingStart="18dp"
                 android:paddingTop="24dp"
@@ -157,15 +159,17 @@
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="5"/>
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_marginTop="37dp">
+<!--            <FrameLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="37dp">-->
 
                 <LinearLayout
+                    android:id="@+id/diaryContainer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:visibility="gone"
+                    android:layout_marginTop="36dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -216,7 +220,7 @@
                                 app:srcCompat="@drawable/divide_line_12" />
 
                             <TextView
-                                android:id="@+id/textDiaryDate"
+                                android:id="@+id/textDiaryCreateDate"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/noto_sans_kr_regular"
@@ -275,7 +279,7 @@
                             android:id="@+id/imageDiary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:visibility="visible"
+                            android:visibility="gone"
                             android:layout_margin="16dp"
                             android:clipToOutline="true"
                             android:background="@drawable/bg_diary_img"
@@ -284,28 +288,38 @@
                     </LinearLayout>
                 </LinearLayout>
 
-
-            </FrameLayout>
-
-            <Button
+            <LinearLayout
                 android:id="@+id/buttonDiaryWrite"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
-                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:gravity="center"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="72dp"
                 android:background="@drawable/bg_btn_submit"
-                android:drawableStart="@drawable/ic_feather_check"
-                android:drawablePadding="7.6dp"
-                android:elevation="6dp"
-                android:fontFamily="@font/noto_sans_kr_medium"
-                android:gravity="left|center_vertical"
-                android:letterSpacing="-0.02"
-                android:paddingStart="95dp"
-                android:text="@string/how_was_today"
-                android:textColor="@color/red_peach" />
+                android:elevation="6dp">
+
+                <ImageView
+                    android:id="@+id/buttonDiaryWriteIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_feather_check"/>
+
+                <TextView
+                    android:id="@+id/buttonDiaryWriteText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="7.6dp"
+                    android:includeFontPadding="false"
+                    android:textSize="16sp"
+                    android:letterSpacing="-0.02"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:text="@string/how_was_today"
+                    android:textColor="@color/red_peach" />
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

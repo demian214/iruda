@@ -48,22 +48,35 @@
         android:textAlignment="textStart"
         android:textSize="14sp" />
 
-    <Button
-        android:id="@+id/button_google_login"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginLeft="46dp"
-        android:layout_marginRight="46dp"
-        android:layout_marginBottom="12dp"
-        android:background="@drawable/bg_btn_login_google"
-        android:drawableStart="@drawable/ic_google"
-        android:drawablePadding="21dp"
-        android:elevation="6dp"
-        android:fontFamily="@font/noto_sans_kr_regular"
-        android:text="@string/text_login_btn_google"
-        android:textAlignment="textStart"
-        android:textColor="#393939"
-        android:textSize="14sp" />
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:visibility="invisible"
+            android:layout_marginBottom="12dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <Button
+            android:id="@+id/button_google_login"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="46dp"
+            android:layout_marginRight="46dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_btn_login_google"
+            android:drawableStart="@drawable/ic_google"
+            android:drawablePadding="21dp"
+            android:elevation="6dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:text="@string/text_login_btn_google"
+            android:textAlignment="textStart"
+            android:textColor="#393939"
+            android:textSize="14sp" />
+    </FrameLayout>
 
     <Button
         android:id="@+id/button_kakao_login"

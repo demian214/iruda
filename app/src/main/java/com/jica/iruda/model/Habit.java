@@ -2,21 +2,40 @@ package com.jica.iruda.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Habit implements Serializable {
+    private String id;
+    private String userId;
     private String title;        // 제목
     private String content;      // 내용
-    private String createTime;   // 생성 시간
-    private String alramTime;    // 알람 시간
+    private LocalDateTime timestamp;           // 생성 시간
+    private LocalTime alarmTime;    // 알람 시간
 
-    public Habit() {
-    }
+    public Habit() {}
 
-    public Habit(String title, String content, String createTime, String alramTime) {
+    public Habit(String userId, String title, String content, LocalDateTime timestamp, LocalTime alarmTime) {
+        this.userId = userId;
         this.title = title;
         this.content = content;
-        this.createTime = createTime;
-        this.alramTime = alramTime;
+        this.timestamp = timestamp;
+        this.alarmTime = alarmTime;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getTitle() {
@@ -35,30 +54,19 @@ public class Habit implements Serializable {
         this.content = content;
     }
 
-    public String getCreateTime() {
-        return createTime;
+    public LocalDateTime getTimestamp() {
+        return timestamp;
     }
 
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime;
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public String getAlramTime() {
-        return alramTime;
+    public LocalTime getAlarmTime() {
+        return alarmTime;
     }
 
-    public void setAlramTime(String alramTime) {
-        this.alramTime = alramTime;
-    }
-    
-    // 정렬을 위한 메서드
-    public int compareTo(Habit compareHabit) {
-        LocalDateTime compareTime = LocalDateTime.parse(((Habit)compareHabit).getCreateTime());
-        LocalDateTime thisLocalDateTime = LocalDateTime.parse(this.createTime);
-
-        return thisLocalDateTime.compareTo(compareTime);
-
-        /* For Descending order do like this */
-        //return compareage-this.studentage;
+    public void setAlarmTime(LocalTime alarmTime) {
+        this.alarmTime = alarmTime;
     }
 }

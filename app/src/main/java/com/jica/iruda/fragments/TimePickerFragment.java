@@ -1,77 +1,29 @@
 package com.jica.iruda.fragments;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
+import android.text.format.DateFormat;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import com.jica.iruda.databinding.FragmentTimePickerBinding;
-
-import java.time.LocalTime;
+import java.util.Calendar;
 
 public class TimePickerFragment extends DialogFragment {
 
-
-    private FragmentTimePickerBinding binding;
-
-    public TimePickerFragment() {
-        // Required empty public constructor
-        Log.d("TAG" , "TimePickerFragment()");
-    }
-
-    public static TimePickerFragment newInstance() {
-        TimePickerFragment fragment = new TimePickerFragment();
-
-        return fragment;
-    }
-
+    @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentTimePickerBinding.inflate(inflater, container, false);
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        final Calendar c = Calendar.getInstance();
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int minute = c.get(Calendar.MINUTE);
 
-        // DialogFragment의 View뒤에 배경색 주기
-        getDialog().getWindow().setDimAmount(0.3f);
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-
-        // Inflate the layout for this fragment
-        return binding.getRoot();
+//        int style = R.style.Theme_Material_Dialog_Alert;  // 권장 스타일
+        int style = AlertDialog.THEME_HOLO_DARK;    // This constant was deprecated in API level 23. Use R.style.Theme_Material_Dialog_Alert.
+        return new TimePickerDialog(getActivity(), style, (TimePickerDialog.OnTimeSetListener) getActivity(), hour, minute,
+                DateFormat.is24HourFormat(getActivity()));
     }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        setListeners();
-    }
-
-    private void setListeners(){
-        binding.buttonCancel.setOnClickListener(view -> onDestroyView());
-        binding.buttonSubmit.setOnClickListener(view -> {
-            LocalTime pickTieme = LocalTime.of(binding.timePicker.getHour(), binding.timePicker.getMinute());
-            setAlramTime setAlramTime = (setAlramTime) getActivity();
-            if(setAlramTime != null) setAlramTime.setAlramTime(pickTieme);
-            dismiss();
-            onDestroyView();
-        });
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
-
-    public interface setAlramTime{
-        void setAlramTime(LocalTime localTime);
-    }
-
-
 }

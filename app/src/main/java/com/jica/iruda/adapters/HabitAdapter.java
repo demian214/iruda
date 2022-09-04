@@ -13,8 +13,7 @@ import com.jica.iruda.databinding.HabitItemBinding;
 import com.jica.iruda.listeners.OnHabitItemClickListener;
 import com.jica.iruda.model.Habit;
 
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -71,13 +70,12 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.ViewHolder> 
             itemBinding.textHabitTitle.setText(item.getTitle());
             itemBinding.textHabitContent.setText(item.getContent());
 
-            if(item.getAlramTime() != null){
+            if(item.getAlarmTime() != null){
                 itemBinding.linearLayout.setVisibility(View.VISIBLE);
-                itemBinding.textAlramTime.setText(LocalTime.parse(item.getAlramTime()).format(DateTimeFormatter.ofPattern("a HH:mm", Locale.US)));
+                itemBinding.textAlarmTime.setText(item.getAlarmTime().format(DateTimeFormatter.ofPattern("a HH:mm", Locale.US)));
             }
 
-            LocalDateTime registerDate = LocalDateTime.parse(item.getCreateTime());
-            int period = Integer.parseInt(Period.between(registerDate.toLocalDate(), LocalDateTime.now().toLocalDate()).getDays()+"");
+            int period = Period.between(item.getTimestamp().toLocalDate(), LocalDate.now()).getDays();
             itemBinding.progressBar.setProgress(period);
 
             ObjectAnimator animation = ObjectAnimator.ofInt (itemBinding.progressBar, "progress", 0, period * 1000); // see this max value coming back here, we animale towards that value

@@ -3,7 +3,7 @@ package com.jica.iruda.model;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private String uid;             // uid
+    private String id;             // uid
     private String name;            // 이름
     private String email;           // 이메일
     private String profileImg;      // 프로필 이미지
@@ -11,19 +11,19 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String uid, String name, String email, String profileImg) {
-        this.uid = uid;
+    public User(String id, String name, String email, String profileImg) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.profileImg = profileImg;
     }
 
-    public String getUid() {
-        return uid;
+    public String getId() {
+        return id;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

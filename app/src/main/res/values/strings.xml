@@ -27,8 +27,8 @@
     <string name="text_register_habit">21일만에 나만의 새로운\n습관 루틴을 만들어요!</string>
     <string name="hint_habit_title">새로운 습관 이름을 입력해주세요</string>
     <string name="hint_habit_content">메모를 입력해주세요\n</string>
-    <string name="alram_setting">알림설정</string>
-    <string name="alram_time_setting">알람시간설정</string>
+    <string name="alarm_setting">알림설정</string>
+    <string name="alarm_time_setting">알람시간설정</string>
     <string name="action_create">등록하기</string>
     <string name="action_nothing">안함</string>
     <string name="action_select">선택</string>
@@ -42,5 +42,7 @@
     <string name="text_input_image">인증샷 등록하기</string>
     <string name="input_diary_content">오늘 습관 일지를 적어주세요</string>
     <string name="write_diary_title">오늘 습관은 어떠셨나요?</string>
+    <string name="everyday">매일</string>
+    <string name="setting_alarm_time">알람 시간 설정</string>
 
 </resources>

@@ -76,7 +76,7 @@
                 android:src="@drawable/ic_alarm_on" />
 
             <TextView
-                android:id="@+id/textAlramTime"
+                android:id="@+id/textAlarmTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"

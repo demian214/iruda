@@ -8,7 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -16,48 +16,51 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.jica.iruda.R;
 import com.jica.iruda.adapters.EmojiAdapter;
 import com.jica.iruda.databinding.ActivityDiaryWriteBinding;
 import com.jica.iruda.listeners.OnEmojiItemClickListener;
-import com.jica.iruda.model.Diary;
 import com.jica.iruda.model.Habit;
-import com.jica.iruda.model.User;
 import com.jica.iruda.utilities.Constants;
+import com.jica.iruda.utilities.PreferenceManager;
 
-import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DiaryWriteActivity extends AppCompatActivity implements OnEmojiItemClickListener {
     private ActivityDiaryWriteBinding binding;
-    private User currentUser;
-    private Habit currentHabit;
+    private PreferenceManager preferenceManager;
+    private Habit habit;
     private EmojiAdapter adapter;
-    private String encodedImage;
     private int emogiIndex;
-    private FirebaseFirestore database;
+    private Boolean state;
+    private Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityDiaryWriteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        database = FirebaseFirestore.getInstance();
+        preferenceManager = new PreferenceManager(getApplicationContext());
         init();
         setListeners();
-
     }
 
     private void init(){
+        emogiIndex = -1;
         Intent intent = getIntent();
-        currentUser = (User) intent.getSerializableExtra(Constants.USER);
-        currentHabit = (Habit) intent.getSerializableExtra(Constants.HABIT);
-        binding.textHabitTitle.setText(currentHabit.getTitle());
+        habit = (Habit) intent.getSerializableExtra(Constants.KEY_HABIT);
+
+        binding.textHabitTitle.setText(habit.getTitle());
 
         TypedArray emojies = getResources().obtainTypedArray(R.array.emojies);
         ArrayList<Drawable> drawables = new ArrayList<>();
@@ -72,8 +75,20 @@ public class DiaryWriteActivity extends AppCompatActivity implements OnEmojiItem
     private void setListeners(){
         binding.buttonBack.setOnClickListener(view -> onBackPressed());
         binding.buttonReload.setOnClickListener(view -> {binding.imageSelectedEmoji.setImageDrawable(null);});
-        binding.inputImage.setOnClickListener(view -> inputImage());
-        binding.buttonSubmitDiary.setOnClickListener(view -> submitDiary());
+        binding.pickImage.setOnClickListener(view -> inputImage());
+        binding.buttonSubmitDiary.setOnClickListener(view -> {
+            if (isVaildDiaryDetails()){
+                submitDiary();
+            }
+        });
+        binding.rgGoalCheck.setOnCheckedChangeListener((radioGroup, i) -> {
+            if (i == binding.rbSuccess.getId()){
+                state = true;
+            } else if (i == binding.rbFail.getId()){
+                state = false;
+            }
+        });
+
     }
 
     private void inputImage(){
@@ -82,29 +97,18 @@ public class DiaryWriteActivity extends AppCompatActivity implements OnEmojiItem
         pickImage.launch(intent);
     }
 
-    private String encodeImage(Bitmap bitmap){
-        int previewWidth = 296;
-        int previewHeight = bitmap.getHeight() * previewWidth / bitmap.getWidth();
-        Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, previewWidth, previewHeight, false);
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        previewBitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
-        byte[] bytes = byteArrayOutputStream.toByteArray();
-        return Base64.encodeToString(bytes, Base64.DEFAULT);
-    }
-
     private final ActivityResultLauncher<Intent> pickImage = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if(result.getResultCode() == RESULT_OK){
                     if(result.getData() != null){
-                        Uri imageUri = result.getData().getData();
+                        imageUri = result.getData().getData();
                         try {
                             InputStream inputStream = getContentResolver().openInputStream(imageUri);
                             Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                            binding.inputImage.setImageBitmap(bitmap);
-                            binding.inputImage.setClipToOutline(true);
+                            binding.pickImage.setImageBitmap(bitmap);
+                            binding.pickImage.setClipToOutline(true);
                             binding.linearLayoutAddImage.setVisibility(View.GONE);
-                            encodedImage = encodeImage(bitmap);
                         } catch (FileNotFoundException e){
                             e.printStackTrace();
                         }
@@ -113,49 +117,87 @@ public class DiaryWriteActivity extends AppCompatActivity implements OnEmojiItem
             });
 
     private void submitDiary(){
-//        int days = Integer.parseInt(Period.between(LocalDateTime.parse(currentHabit.getCreateTime()).toLocalDate(), LocalDate.now()).getDays()+"");
-        Diary diary = new Diary(emogiIndex,
-                                binding.inputDiaryContent.getText().toString().trim(),
-                                encodedImage,
-                                getState(),
-                                LocalDateTime.now().toString());
+        loading(true);
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        if (imageUri != null){
+            // 이미지가 있는 습관 일지 생성
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReference();
+            StorageReference imagesRef = storageRef.child("images/" + imageUri.getLastPathSegment());
+            UploadTask uploadTask = imagesRef.putFile(imageUri);
 
-        database.collection(Constants.USERS)
-                .document(currentUser.getUid())
-                .collection(Constants.HABITS)
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()){
-                        for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()){
-                            if (documentSnapshot.toObject(Habit.class).getCreateTime().equals(currentHabit.getCreateTime())){
-                                database.collection(Constants.USERS)
-                                        .document(currentUser.getUid())
-                                        .collection(Constants.HABITS)
-                                        .document(documentSnapshot.getId())
-                                        .collection(Constants.DIARIES)
-                                        .add(diary)
-                                        .addOnSuccessListener(documentReference -> showToast("일기 생성 성공"))
-                                        .addOnFailureListener(e -> showToast("일기 생성 실패"));
-                                break;
-                            }
+            uploadTask.continueWithTask(task -> {
+                if (!task.isSuccessful()) {
+                    throw task.getException();
+                }
+                // Continue with the task to get the download URL
+                return imagesRef.getDownloadUrl();
+            }).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Uri downloadUri = task.getResult();
+                    // 습관 일지 객체 생성
+                    HashMap<String, Object> diary = new HashMap<>();
+                    diary.put(Constants.KEY_DAY, Period.between(habit.getTimestamp().toLocalDate(), LocalDate.now()).getDays());
+                    diary.put(Constants.KEY_DIARY_EMOJI_INDEX, emogiIndex);
+                    diary.put(Constants.KEY_DIARY_CONTENT, binding.inputContent.getText().toString());
+                    diary.put(Constants.KEY_DIARY_IMAGE_URL, downloadUri.toString());
+                    diary.put(Constants.KEY_DIARY_ACHIEVEMENT_FLAG, state);
+                    diary.put(Constants.KEY_DIARY_TIMESTAMP, LocalDateTime.now().toString());
 
-                        }
-                    }
-                });
+                    // DB에 저장
+                    database.collection(Constants.KEY_COLLECTION_DIARIES)
+                            .add(diary)
+                            .addOnSuccessListener(documentReference -> {
+                                Log.d(Constants.TAG, "DiaryWriteActivity>>submitDiary()>>::success");
+                                loading(false);
+                                goToHabitDetailActivity();
+                                showToast("습관 일지 생성 완료");
+                            })
+                            .addOnFailureListener(e -> Log.d(Constants.TAG, "DiaryWriteActivity>>submitDiary()::failure, Error message:" + e.getMessage()));
+                } else {
+                    Log.d(Constants.TAG, "DiaryWriteActivity>>submitDiary()>>task.isSuccessful()>>false");
+                }
+            });
+        } else {
+            // 이미지가 없는 습관 일지 생성
+            // 습관 일지 객체 생성
+            HashMap<String, Object> diary = new HashMap<>();
+            diary.put(Constants.KEY_DIARY_EMOJI_INDEX, emogiIndex);
+            diary.put(Constants.KEY_DIARY_CONTENT, binding.inputContent.getText().toString());
+            diary.put(Constants.KEY_DIARY_IMAGE_URL, null);
+            diary.put(Constants.KEY_DIARY_ACHIEVEMENT_FLAG, state);
+            diary.put(Constants.KEY_DIARY_TIMESTAMP, LocalDateTime.now().toString());
 
-        goToHabitDetailActivity();
+            // DB에 저장
+            database.collection(Constants.KEY_COLLECTION_DIARIES)
+                    .add(diary)
+                    .addOnSuccessListener(documentReference -> {
+                        Log.d(Constants.TAG, "DiaryWriteActivity>>submitDiary()>>::success");
+                        loading(false);
+                        goToHabitDetailActivity();
+                        showToast("습관 일지 생성 완료");
+                    })
+                    .addOnFailureListener(e -> Log.d(Constants.TAG, "DiaryWriteActivity>>submitDiary()::failure, Error message:" + e.getMessage()));
+        }
+    }
+
+    private Boolean isVaildDiaryDetails(){
+        if (emogiIndex < 0){
+            showToast("이모지를 선택해주세요");
+            return false;
+        } else if (binding.inputContent.getText().toString().trim().isEmpty()){
+            showToast("습관 일지를 작성해주세요");
+            return false;
+        } else if (state == null){
+            showToast("달성 여부를 체크해주세요");
+            return false;
+        } else {
+            return true;
+        }
     }
 
     private void showToast(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-    }
-
-    private boolean getState(){
-        if (binding.rgGoalCheck.getCheckedRadioButtonId() == binding.rbSuccess.getId()){
-            return true;
-        }else {
-            return false;
-        }
     }
 
     @Override
@@ -166,8 +208,7 @@ public class DiaryWriteActivity extends AppCompatActivity implements OnEmojiItem
 
     private void goToHabitDetailActivity(){
         Intent intent = new Intent(this, HabitDetailActivity.class);
-        intent.putExtra(Constants.USER, currentUser);
-        intent.putExtra(Constants.HABIT, currentHabit);
+        intent.putExtra(Constants.KEY_HABIT, habit);
         startActivity(intent);
         finish();
     }
@@ -176,5 +217,15 @@ public class DiaryWriteActivity extends AppCompatActivity implements OnEmojiItem
     public void onEmojiClick(EmojiAdapter.ViewHolder viewHolder, View view, int position) {
         binding.imageSelectedEmoji.setImageDrawable(adapter.getItem(position));
         emogiIndex = position;
+    }
+
+    private void loading(boolean isLoading){
+        if (isLoading){
+            binding.buttonSubmitDiary.setVisibility(View.INVISIBLE);
+            binding.progressBar.setVisibility(View.VISIBLE);
+        } else {
+            binding.buttonSubmitDiary.setVisibility(View.VISIBLE);
+            binding.progressBar.setVisibility(View.INVISIBLE);
+        }
     }
 }

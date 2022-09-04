@@ -8,49 +8,40 @@ import android.view.animation.AnimationUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.jica.iruda.R;
 import com.jica.iruda.databinding.ActivitySplashBinding;
-import com.jica.iruda.model.User;
-import com.jica.iruda.utilities.Constants;
-
-import java.io.Serializable;
+import com.jica.iruda.utilities.PreferenceManager;
 
 public class SplashActivity extends AppCompatActivity {
     private ActivitySplashBinding binding;
     private FirebaseFirestore database;
+    private PreferenceManager preferenceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferenceManager = new PreferenceManager(getApplicationContext());
         binding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         database = FirebaseFirestore.getInstance();
         showAnimation();
+        goToLoginActivity();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        if (mAuth.getCurrentUser() != null){
-            FirebaseUser currentUser = mAuth.getCurrentUser();
-            database.collection(Constants.USERS)
-                    .document(currentUser.getUid())
-                    .get()
-                    .addOnCompleteListener(task -> {
-                        DocumentSnapshot documentSnapshot = task.getResult();
-                        User user = documentSnapshot.toObject(User.class);
-                        goToHabitListActivity(user);
-                    });
-        } else {
-            goToLoginActivity();
-        }
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        // Check if user is signed in (non-null) and update UI accordingly.
+//        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+//        if (mAuth.getCurrentUser() != null){
+//            if (preferenceManager.getString(Constants.KEY_USER_ID) != null){
+//                goToHabitListActivity();
+//            }
+//        } else {
+//            goToLoginActivity();
+//        }
+//    }
 
     private void showAnimation(){
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.splash_image_logo_fade_in);
@@ -65,9 +56,8 @@ public class SplashActivity extends AppCompatActivity {
         finish();
     }
 
-    public void goToHabitListActivity(User user){
+    public void goToHabitListActivity(){
         Intent intent = new Intent(getApplicationContext(), HabitListActivity.class);
-        intent.putExtra(Constants.USER, (Serializable) user);
         startActivity(intent);
         finish();
     }

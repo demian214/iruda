@@ -94,8 +94,12 @@
         <!--    습관 작성    -->
         <activity
             android:name=".activities.RegisterHabitActivity"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:exported="true"/>
+
+<!--        <activity-->
+<!--            android:name=".activities.RegisterHabitActivity"-->
+<!--            android:exported="true"-->
+<!--            android:theme="@style/Theme.AppCompat.NoActionBar" />-->
 
         <!--    습관 상세    -->
         <activity

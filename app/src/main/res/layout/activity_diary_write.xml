@@ -80,62 +80,6 @@
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:orientation="horizontal"/>
 
-<!--                    <RadioGroup-->
-<!--                        android:id="@+id/rg_emoji"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:orientation="horizontal"-->
-<!--                        android:layout_gravity="center"-->
-<!--                        android:gravity="center">-->
-
-
-<!--                        <RadioButton-->
-<!--                            android:id="@+id/rb1"-->
-<!--                            android:layout_width="24dp"-->
-<!--                            android:layout_height="24dp"-->
-<!--                            android:layout_margin="6dp"-->
-<!--                            android:background="@drawable/emoji56"-->
-<!--                            android:backgroundTint="@color/selector_emoji"-->
-<!--                            android:backgroundTintMode="screen"-->
-<!--                            android:button="@null" />-->
-<!--                        <RadioButton-->
-<!--                            android:id="@+id/rb2"-->
-<!--                            android:layout_width="24dp"-->
-<!--                            android:layout_height="24dp"-->
-<!--                            android:layout_margin="6dp"-->
-<!--                            android:background="@drawable/emoji07"-->
-<!--                            android:backgroundTint="@color/selector_emoji"-->
-<!--                            android:backgroundTintMode="screen"-->
-<!--                            android:button="@null" />-->
-<!--                        <RadioButton-->
-<!--                            android:id="@+id/rb3"-->
-<!--                            android:layout_width="24dp"-->
-<!--                            android:layout_height="24dp"-->
-<!--                            android:layout_margin="6dp"-->
-<!--                            android:background="@drawable/emoji79"-->
-<!--                            android:backgroundTint="@color/selector_emoji"-->
-<!--                            android:backgroundTintMode="screen"-->
-<!--                            android:button="@null" />-->
-<!--                        <RadioButton-->
-<!--                            android:id="@+id/rb4"-->
-<!--                            android:layout_width="24dp"-->
-<!--                            android:layout_height="24dp"-->
-<!--                            android:layout_margin="6dp"-->
-<!--                            android:background="@drawable/emoji41"-->
-<!--                            android:backgroundTint="@color/selector_emoji"-->
-<!--                            android:backgroundTintMode="screen"-->
-<!--                            android:button="@null" />-->
-<!--                        <RadioButton-->
-<!--                            android:id="@+id/rb5"-->
-<!--                            android:layout_width="24dp"-->
-<!--                            android:layout_height="24dp"-->
-<!--                            android:layout_margin="6dp"-->
-<!--                            android:background="@drawable/emoji54"-->
-<!--                            android:backgroundTint="@color/selector_emoji"-->
-<!--                            android:backgroundTintMode="screen"-->
-<!--                            android:button="@null" />-->
-<!--                    </RadioGroup>-->
-
                 </LinearLayout>
 
                 <ImageButton
@@ -173,7 +117,7 @@
                     android:layout_marginEnd="20dp">
 
                     <EditText
-                        android:id="@+id/inputDiaryContent"
+                        android:id="@+id/inputContent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/noto_sans_kr_regular"
@@ -192,7 +136,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/inputImage"
+                        android:id="@+id/pickImage"
                         android:layout_width="match_parent"
                         android:layout_height="140dp"
                         android:layout_margin="16dp"
@@ -316,21 +260,36 @@
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/buttonSubmitDiary"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="120dp"
-                android:background="@drawable/bg_btn_diary_done"
-                android:elevation="6dp"
-                android:fontFamily="@font/noto_sans_kr_medium"
-                android:textSize="16sp"
-                android:textColor="#d33f27"
-                android:letterSpacing="-0.02"
-                android:text="@string/action_submit_diary" />
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/buttonSubmitDiary"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="120dp"
+                    android:background="@drawable/bg_btn_diary_done"
+                    android:elevation="6dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:textSize="16sp"
+                    android:textColor="#d33f27"
+                    android:letterSpacing="-0.02"
+                    android:text="@string/action_submit_diary" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="32dp"
+                    android:progressTint="@color/red_peach"
+                    android:progressBackgroundTint="@color/red_peach"
+                    android:layout_gravity="center_horizontal"/>
+            </FrameLayout>
+
 
         </LinearLayout>
 

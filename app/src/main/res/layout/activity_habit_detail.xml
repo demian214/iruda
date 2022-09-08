@@ -130,16 +130,28 @@
 
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/imageConvertView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <ToggleButton
+                    android:id="@+id/togglebuttonEmoji"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/ic_emoji"
+                    android:textOn=""
+                    android:textOff=""
                     android:layout_marginTop="59dp"
-                    android:background="@color/transparent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:src="@drawable/ic_emoji" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/imageConvertView"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="59dp"-->
+<!--                    android:background="@color/transparent"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    android:src="@drawable/ic_emoji" />-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -145,10 +145,14 @@ public class DiaryWriteActivity extends AppCompatActivity implements OnEmojiItem
                     diary.put(Constants.KEY_DIARY_TIMESTAMP, LocalDateTime.now().toString());
 
                     // DB에 저장
-                    database.collection(Constants.KEY_COLLECTION_DIARIES)
+                    database.collection(Constants.KEY_COLLECTION_USERS)
+                            .document(preferenceManager.getString(Constants.KEY_USER_ID))
+                            .collection(Constants.KEY_COLLECTION_HABITS)
+                            .document(habit.getId())
+                            .collection(Constants.KEY_COLLECTION_DIARIES)
                             .add(diary)
                             .addOnSuccessListener(documentReference -> {
-                                Log.d(Constants.TAG, "DiaryWriteActivity>>submitDiary()>>::success");
+                                Log.d(Constants.TAG, "DiaryWriteActivity>>submitDiary()>>::success(image)");
                                 loading(false);
                                 goToHabitDetailActivity();
                                 showToast("습관 일지 생성 완료");
@@ -162,6 +166,7 @@ public class DiaryWriteActivity extends AppCompatActivity implements OnEmojiItem
             // 이미지가 없는 습관 일지 생성
             // 습관 일지 객체 생성
             HashMap<String, Object> diary = new HashMap<>();
+            diary.put(Constants.KEY_DAY, Period.between(habit.getTimestamp().toLocalDate(), LocalDate.now()).getDays());
             diary.put(Constants.KEY_DIARY_EMOJI_INDEX, emogiIndex);
             diary.put(Constants.KEY_DIARY_CONTENT, binding.inputContent.getText().toString());
             diary.put(Constants.KEY_DIARY_IMAGE_URL, null);
@@ -169,10 +174,14 @@ public class DiaryWriteActivity extends AppCompatActivity implements OnEmojiItem
             diary.put(Constants.KEY_DIARY_TIMESTAMP, LocalDateTime.now().toString());
 
             // DB에 저장
-            database.collection(Constants.KEY_COLLECTION_DIARIES)
+            database.collection(Constants.KEY_COLLECTION_USERS)
+                    .document(preferenceManager.getString(Constants.KEY_USER_ID))
+                    .collection(Constants.KEY_COLLECTION_HABITS)
+                    .document(habit.getId())
+                    .collection(Constants.KEY_COLLECTION_DIARIES)
                     .add(diary)
                     .addOnSuccessListener(documentReference -> {
-                        Log.d(Constants.TAG, "DiaryWriteActivity>>submitDiary()>>::success");
+                        Log.d(Constants.TAG, "DiaryWriteActivity>>submitDiary()>>::success(No image)");
                         loading(false);
                         goToHabitDetailActivity();
                         showToast("습관 일지 생성 완료");

@@ -19,7 +19,8 @@ import java.util.ArrayList;
 public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder> implements OnDiaryItemClickListener {
     private ArrayList<Diary> items;
     private OnDiaryItemClickListener listener;
-    private boolean viewFlag = false;
+    private static Boolean isEmojiView = false;
+
 
     public DiaryAdapter(ArrayList<Diary> items, OnDiaryItemClickListener listener) {
         this.items = items;
@@ -36,7 +37,7 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Diary item = items.get(position);
-        holder.setItem(item, position, isViewFlag());
+        holder.setItem(item, position);
     }
 
     @Override
@@ -61,37 +62,53 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder> 
     }
 
     @Override
-    public void onDiaryClick(ViewHolder viewHolder, View view, int position, DateItemBinding binding) {
+    public void onDiaryClick(ViewHolder viewHolder, View view, int position) {
         if(listener != null){
-            listener.onDiaryClick(viewHolder, view, position, binding);
+            listener.onDiaryClick(viewHolder, view, position);
         }
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         DateItemBinding binding;
+//        public boolean select = false;
+        public int oldPosition = -1;
+        public int selectedPosition = -1;
+
 
         public ViewHolder(@NonNull DateItemBinding binding, final OnDiaryItemClickListener listener) {
             super(binding.getRoot());
             this.binding = binding;
 
+
             binding.getRoot().setOnClickListener(view -> {
                 int position = getAdapterPosition();
 
                 if(listener != null){
-                    listener.onDiaryClick(ViewHolder.this, view, position, binding);
+                    listener.onDiaryClick(ViewHolder.this, view, position);
                 }
             });
         }
 
-        public void setItem(Diary item, int position, boolean isEmojiView){
+        public void setItem(Diary item, int position){
+            binding.textDate.setVisibility(View.VISIBLE);
             binding.textDate.setText(++position + "");
 
             if (item != null){
-                if (!isEmojiView){
-                    // 이모지뷰 껐을 때
-                    binding.imageEmoji.setVisibility(View.INVISIBLE);
+                if (isEmojiView){
+                    if (item.getContent() != null){
+                        binding.textDate.setVisibility(View.INVISIBLE);
+                        binding.imageEmoji.setVisibility(View.VISIBLE);
+                        TypedArray emojies = binding.getRoot().getResources().obtainTypedArray(R.array.emojies);
+                        binding.imageEmoji.setImageDrawable(emojies.getDrawable(item.getEmogiIndex()));
+                    } else {
+                        // 목표 달성 못 했을 때(아무것도 작성 안한 날)
+                        binding.textDate.setTextColor(ContextCompat.getColor(binding.getRoot().getContext(), R.color.white));
+                        binding.textDate.setBackground(ContextCompat.getDrawable(binding.getRoot().getContext(), R.drawable.bg_date_tile_fail));
+                    }
+                } else {
                     binding.textDate.setVisibility(View.VISIBLE);
+                    binding.imageEmoji.setVisibility(View.INVISIBLE);
                     if (item.getAchievement()){
                         // 목표 달성했을 때
                         binding.textDate.setTextColor(ContextCompat.getColor(binding.getRoot().getContext(), R.color.white));
@@ -101,25 +118,36 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder> 
                         binding.textDate.setTextColor(ContextCompat.getColor(binding.getRoot().getContext(), R.color.white));
                         binding.textDate.setBackground(ContextCompat.getDrawable(binding.getRoot().getContext(), R.drawable.bg_date_tile_fail));
                     }
-                } else {
-                    // 이모지뷰 켰을 때
-                    TypedArray emojies = binding.getRoot().getResources().obtainTypedArray(R.array.emojies);
-                    binding.imageEmoji.setImageDrawable(emojies.getDrawable(item.getEmogiIndex()));
-                    binding.textDate.setVisibility(View.INVISIBLE);
-                    binding.imageEmoji.setVisibility(View.VISIBLE);
                 }
+
             }
         }
 
+        public void setItemClicked(Boolean isAchieved){
+            if (isAchieved){
+                binding.textDate.setBackground(binding.getRoot().getResources().getDrawable(R.drawable.bg_date_tile_pass_clicked));
+                binding.textDate.setTextColor(binding.getRoot().getResources().getColor(R.color.red_peach));
+            } else {
+                binding.textDate.setBackground(binding.getRoot().getResources().getDrawable(R.drawable.bg_date_tile_fail_clicked));
+                binding.textDate.setTextColor(binding.getRoot().getResources().getColor(R.color.background_tile_fail));
+            }
+        }
+
+        public void setItemInit(Diary item){
+            if (item.getAchievement()){
+                // 목표 달성했을 때
+                binding.textDate.setTextColor(ContextCompat.getColor(binding.getRoot().getContext(), R.color.white));
+                binding.textDate.setBackground(ContextCompat.getDrawable(binding.getRoot().getContext(), R.drawable.bg_date_tile_pass));
+            } else {
+                // 목표 달성 못 했을 때
+                binding.textDate.setTextColor(ContextCompat.getColor(binding.getRoot().getContext(), R.color.white));
+                binding.textDate.setBackground(ContextCompat.getDrawable(binding.getRoot().getContext(), R.drawable.bg_date_tile_fail));
+            }
+        }
 
     }
 
-    public boolean isViewFlag() {
-        return viewFlag;
+    public void setEmojiView(Boolean emojiView) {
+        isEmojiView = emojiView;
     }
-
-    public void setViewFlag(boolean viewFlag) {
-        this.viewFlag = viewFlag;
-    }
-
 }

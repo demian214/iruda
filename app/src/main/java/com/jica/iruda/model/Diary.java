@@ -3,6 +3,7 @@ package com.jica.iruda.model;
 import java.time.LocalDateTime;
 
 public class Diary {
+    private String id;
     private int day;
     private int emogiIndex;             // 이모지
     private String content;             // 내용
@@ -13,6 +14,21 @@ public class Diary {
     public Diary() {
     }
 
+    public Diary(int day, Boolean achievement) {
+        this.day = day;
+        this.achievement = achievement;
+    }
+
+    public Diary(String id, int day, int emogiIndex, String content, String imageUrl, Boolean achievement, LocalDateTime timestamp) {
+        this.id = id;
+        this.day = day;
+        this.emogiIndex = emogiIndex;
+        this.content = content;
+        this.imageUrl = imageUrl;
+        this.achievement = achievement;
+        this.timestamp = timestamp;
+    }
+
     public Diary(int day, int emogiIndex, String content, String imageUrl, Boolean achievement, LocalDateTime timestamp) {
         this.day = day;
         this.emogiIndex = emogiIndex;
@@ -20,6 +36,14 @@ public class Diary {
         this.imageUrl = imageUrl;
         this.achievement = achievement;
         this.timestamp = timestamp;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public int getDay() {

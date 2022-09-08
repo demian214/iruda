@@ -5,7 +5,9 @@ import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -14,11 +16,11 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.jica.iruda.R;
 import com.jica.iruda.adapters.DiaryAdapter;
 import com.jica.iruda.databinding.ActivityHabitDetailBinding;
-import com.jica.iruda.databinding.DateItemBinding;
 import com.jica.iruda.listeners.OnDiaryItemClickListener;
 import com.jica.iruda.model.Diary;
 import com.jica.iruda.model.Habit;
 import com.jica.iruda.utilities.Constants;
+import com.jica.iruda.utilities.PreferenceManager;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -29,16 +31,19 @@ import java.util.ArrayList;
 public class HabitDetailActivity extends AppCompatActivity implements OnDiaryItemClickListener {
 
     private ActivityHabitDetailBinding binding;
+    private PreferenceManager preferenceManager;
     private DiaryAdapter adapter;
     private Habit habit;
     private ArrayList<Diary> diaries;
+    private int selectedPosition = -1;
+    private int oldPosition = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityHabitDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        preferenceManager = new PreferenceManager(getApplicationContext());
         init();
         setListeners();
     }
@@ -46,6 +51,7 @@ public class HabitDetailActivity extends AppCompatActivity implements OnDiaryIte
     private void init(){
         Intent intent = getIntent();
         habit = (Habit) intent.getSerializableExtra(Constants.KEY_HABIT);
+        Log.d(Constants.TAG, "HabitDetailActivity::habit ID:" + habit.getId());
 
         binding.textTodayDate.setText(LocalDate.now().format(DateTimeFormatter.ofPattern("MM월 dd일")));
         binding.textDDay.setText(getDday(habit.getTimestamp().toLocalDate()));
@@ -80,19 +86,20 @@ public class HabitDetailActivity extends AppCompatActivity implements OnDiaryIte
     }
 
     @Override
-    public void onDiaryClick(DiaryAdapter.ViewHolder viewHolder, View view, int position, DateItemBinding itemBinding) {
-        if (adapter.getItem(position) != null){
+    public void onDiaryClick(DiaryAdapter.ViewHolder viewHolder, View view, int position) {
+
+        if (adapter.getItem(position) != null && adapter.getItem(position).getContent() != null){
             Diary item = adapter.getItem(position);
-            binding.diaryContainer.setVisibility(View.VISIBLE);
-            if (!adapter.isViewFlag()){
-                if (item.getAchievement()){
-                    itemBinding.textDate.setBackground(getDrawable(R.drawable.bg_date_tile_pass_clicked));
-                    itemBinding.textDate.setTextColor(getColor(R.color.red_peach));
-                } else {
-                    itemBinding.textDate.setBackground(getDrawable(R.drawable.bg_date_tile_fail_clicked));
-                    itemBinding.textDate.setTextColor(getColor(R.color.background_tile_fail));
-                }
+
+            if (selectedPosition != position){
+                viewHolder.setItemClicked(item.getAchievement());
+                selectedPosition = position;
+            } else {
+
             }
+
+            // 다이어리 상세내용 시작
+            binding.diaryContainer.setVisibility(View.VISIBLE);
             binding.textDiaryDay.setText(item.getDay() + 1 + "일차");
             binding.textDiaryCreateDate.setText(item.getTimestamp().format(DateTimeFormatter.ofPattern("y.M.d")));
             TypedArray emojies = binding.getRoot().getResources().obtainTypedArray(R.array.emojies);
@@ -103,6 +110,7 @@ public class HabitDetailActivity extends AppCompatActivity implements OnDiaryIte
                 Glide.with(this).load(item.getImageUrl()).into(binding.imageDiary);
                 binding.imageDiary.setClipToOutline(true);
             }
+            // 다이어리 상세내용 끝
         }
     }
 
@@ -110,7 +118,17 @@ public class HabitDetailActivity extends AppCompatActivity implements OnDiaryIte
         binding.buttonBack.setOnClickListener(view -> onBackPressed());
         binding.buttonDeleteHabit.setOnClickListener(view -> deleteHabit());
         binding.buttonShareSns.setOnClickListener(view -> shareSns());
-        binding.imageConvertView.setOnClickListener(view -> convertView());
+        binding.togglebuttonEmoji.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+            if (isChecked){
+                binding.togglebuttonEmoji.setBackgroundResource(R.drawable.ic_convert);
+                adapter.setEmojiView(true);
+                adapter.notifyDataSetChanged();
+            } else {
+                binding.togglebuttonEmoji.setBackgroundResource(R.drawable.ic_emoji);
+                adapter.setEmojiView(false);
+                adapter.notifyDataSetChanged();
+            }
+        });
         binding.buttonDiaryWrite.setOnClickListener(view -> goToDiaryWriteActivity());
     }
 
@@ -123,22 +141,33 @@ public class HabitDetailActivity extends AppCompatActivity implements OnDiaryIte
     }
 
     private void deleteHabit(){
-
+        AlertDialog.Builder builder = new AlertDialog.Builder(HabitDetailActivity.this);
+        builder.setMessage("정말 습관을 삭제하겠습니까?");
+        builder.setPositiveButton("삭제", (dialogInterface, i) -> {
+            FirebaseFirestore database = FirebaseFirestore.getInstance();
+            database.collection(Constants.KEY_COLLECTION_USERS)
+                    .document(preferenceManager.getString(Constants.KEY_USER_ID))
+                    .collection(Constants.KEY_COLLECTION_HABITS)
+                    .document(habit.getId())
+                    .delete()
+                    .addOnSuccessListener(unused -> {
+                        Log.d(Constants.TAG, "DocumentSnapshot successfully deleted!");
+                        showToast("습관 삭제 완료");
+                        goToHabitListActivity();
+                    })
+                    .addOnFailureListener(e -> {
+                        showToast("습관 삭제 실패");
+                        Log.w(Constants.TAG, "Error deleting document", e);
+                        return;
+                    });
+        });
+        builder.setNegativeButton("취소", (dialogInterface, i) -> dialogInterface.cancel());
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     private void shareSns(){
 
-    }
-
-    private void convertView(){
-        if (!adapter.isViewFlag()){
-            binding.imageConvertView.setImageResource(R.drawable.ic_convert);
-            adapter.setViewFlag(true);
-        } else {
-            binding.imageConvertView.setImageResource(R.drawable.ic_emoji);
-            adapter.setViewFlag(false);
-        }
-        adapter.notifyDataSetChanged();
     }
 
     private void goToDiaryWriteActivity(){
@@ -148,9 +177,19 @@ public class HabitDetailActivity extends AppCompatActivity implements OnDiaryIte
         finish();
     }
 
+    private void goToHabitListActivity(){
+        Intent intent = new Intent(this, HabitListActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     private void getDiaryFromDatabase(){
         FirebaseFirestore database = FirebaseFirestore.getInstance();
-        database.collection(Constants.KEY_COLLECTION_DIARIES)
+        database.collection(Constants.KEY_COLLECTION_USERS)
+                .document(preferenceManager.getString(Constants.KEY_USER_ID))
+                .collection(Constants.KEY_COLLECTION_HABITS)
+                .document(habit.getId())
+                .collection(Constants.KEY_COLLECTION_DIARIES)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful() && task.getResult() != null){
@@ -176,12 +215,28 @@ public class HabitDetailActivity extends AppCompatActivity implements OnDiaryIte
                             Diary diary = new Diary(day, emogiIndex, content, imageUrl, achievementFlag, timestamp);
                             diaries.set(diary.getDay(), diary);
                         }
+                        for (int i=0; i<Period.between(habit.getTimestamp().toLocalDate(), LocalDate.now()).getDays(); i++){
+                            if (diaries.get(i) != null){
+                                continue;
+                            } else {
+                                diaries.set(i, new Diary(i, false));
+                            }
+
+                        }
+
                         adapter.setItems(diaries);
                         adapter.notifyDataSetChanged();
                     } else {
                         Log.d(Constants.TAG, "No such document");
+                        for (int i = 0; i < diaries.size(); i++){
+
+                        }
                     }
                 });
+    }
+
+    private void showToast(String message){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
 }

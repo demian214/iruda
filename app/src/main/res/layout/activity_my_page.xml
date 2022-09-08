@@ -4,166 +4,177 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".activities.MyPageActivity">
 
-    <ScrollView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:background="@color/background3">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/mypage_bg"
+        android:orientation="vertical"
+        android:gravity="bottom|center_horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:src="@drawable/mypage_iv_level0"
+            android:layout_marginBottom="8dp"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/mypage_bg"
-            android:orientation="vertical"
-            android:gravity="bottom|center_horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/mypage_iv_level0"
-                android:layout_marginBottom="8dp"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginBottom="4dp">
-
-                <TextView
-                    android:id="@+id/textLevel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/noto_sans_kr_bold"
-                    android:includeFontPadding="false"
-                    android:textSize="16sp"
-                    android:textColor="#393939"
-                    android:letterSpacing="-0.02"
-                    android:gravity="center_horizontal"
-                    android:text="새싹"/>
-
-                <ImageButton
-                    android:id="@+id/buttonLevelInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:background="#00000000"
-                    android:src="@drawable/ic_question_mark"/>
-            </LinearLayout>
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="4dp">
 
             <TextView
-                android:id="@+id/textLevelDetail"
+                android:id="@+id/textLevel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_sans_kr_regular"
+                android:fontFamily="@font/noto_sans_kr_bold"
                 android:includeFontPadding="false"
-                android:textSize="12sp"
-                android:textColor="#929292"
+                android:textSize="16sp"
+                android:textColor="#393939"
                 android:letterSpacing="-0.02"
                 android:gravity="center_horizontal"
-                android:layout_marginBottom="40dp"
-                android:text="연속 0~3일"/>
+                android:text="새싹"/>
 
-
-            </LinearLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+            <ImageButton
+                android:id="@+id/buttonLevelInfo"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_marginStart="2dp"
+                android:background="#00000000"
+                android:src="@drawable/ic_question_mark"/>
+        </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/imageProfile"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:scaleType="centerCrop"
-                    android:clipToOutline="true"
-                    android:background="@drawable/bg_img_profile"
-                    android:foreground="@drawable/bg_img_profile"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textLevelDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            android:textColor="#929292"
+            android:letterSpacing="-0.02"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="40dp"
+            android:text="연속 0~3일"/>
 
-
-                <TextView
-                    android:id="@+id/textName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:fontFamily="@font/noto_sans_kr_black"
-                    android:includeFontPadding="false"
-                    android:text="사용자"
-                    android:letterSpacing="-0.02"
-                    android:textColor="@color/bold_text"
-                    android:textSize="20sp"
-                    app:layout_goneMarginStart="15dp"
-                    android:layout_marginTop="11dp"
-                    app:layout_constraintStart_toEndOf="@+id/imageProfile"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/imageSns"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginBottom="7dp"
-                    android:src="@drawable/mypage_iv_naver"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageProfile" />
-
-
-                <TextView
-                    android:id="@+id/textLoginInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/noto_sans_kr_regular"
-                    android:gravity="center_horizontal"
-                    android:includeFontPadding="false"
-                    android:letterSpacing="-0.02"
-                    android:text="네이버 로그인"
-                    android:textColor="#707070"
-                    android:textSize="12sp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginBottom="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageSns" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
-    </ScrollView>
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageProfile"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:scaleType="centerCrop"
+                android:clipToOutline="true"
+                android:background="@drawable/bg_img_profile"
+                android:foreground="@drawable/bg_img_profile"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/textName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/noto_sans_kr_black"
+                android:includeFontPadding="false"
+                android:text="사용자"
+                android:letterSpacing="-0.02"
+                android:textColor="@color/bold_text"
+                android:textSize="20sp"
+                app:layout_goneMarginStart="15dp"
+                android:layout_marginTop="11dp"
+                app:layout_constraintStart_toEndOf="@+id/imageProfile"
+                app:layout_constraintTop_toTopOf="parent" />
+
+<!--            <ImageView-->
+<!--                android:id="@+id/imageSns"-->
+<!--                android:layout_width="20dp"-->
+<!--                android:layout_height="20dp"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:layout_marginBottom="7dp"-->
+<!--                android:src="@drawable/ic_google2"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/imageProfile" />-->
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/textLoginInfo"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/noto_sans_kr_regular"-->
+<!--                android:gravity="center_horizontal"-->
+<!--                android:includeFontPadding="false"-->
+<!--                android:letterSpacing="-0.02"-->
+<!--                android:text="네이버 로그인"-->
+<!--                android:textColor="#707070"-->
+<!--                android:textSize="12sp"-->
+<!--                android:layout_marginStart="4dp"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/imageSns"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/imageSns"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/imageSns" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/buttonSignOut"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@drawable/bg_btn_submit"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:elevation="6dp"
+            android:text="로그아웃"
+            android:textSize="16sp"
+            android:textColor="@color/red_peach"
+            android:letterSpacing="-0.02"
+            android:fontFamily="@font/noto_sans_kr_medium" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/transparent"
-        app:contentInsetStart="0dp">
+        android:orientation="horizontal"
+        android:background="@color/transparent">
 
         <ImageButton
             android:id="@+id/buttonBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
             android:background="#00000000"
             android:src="@drawable/ic_back"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
             android:letterSpacing="-0.02"
@@ -171,5 +182,5 @@
             android:textColor="@color/red_peach"
             android:textSize="16sp" />
 
-    </androidx.appcompat.widget.Toolbar>
+    </LinearLayout>
 </FrameLayout>

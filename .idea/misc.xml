@@ -93,6 +93,7 @@
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/mypage_iv_level0.xml" value="0.1735" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/mypage_iv_level1.xml" value="0.2855" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/mypage_iv_level2.xml" value="0.2855" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/mypage_iv_naver.xml" value="0.3025" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/round_button.xml" value="0.366" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/selector_rb_emoji.xml" value="0.2835" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/drawable/selector_switch.xml" value="0.1" />
@@ -109,12 +110,12 @@
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout-v31/activity_habit_list.xml" value="0.36614583333333334" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout-v31/fragment_diary.xml" value="0.33" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_diary_write.xml" value="0.5" />
-        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_habit_detail.xml" value="0.33" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_habit_detail.xml" value="0.5" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_habit_list.xml" value="0.2949438202247191" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_login.xml" value="0.67" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_my_page.xml" value="0.25" />
-        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_register_habit.xml" value="0.22" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_my_page.xml" value="0.33" />
+        <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_register_habit.xml" value="0.5" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/activity_splash.xml" value="0.33" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/date_item.xml" value="0.67" />
         <entry key="..\:/WAWork/AndroidWork/Iruda/app/src/main/res/layout/emoji_item.xml" value="0.20820863616930313" />

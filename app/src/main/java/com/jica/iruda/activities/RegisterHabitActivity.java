@@ -91,7 +91,9 @@ public class RegisterHabitActivity extends AppCompatActivity implements TimePick
         habit.put(Constants.KEY_HABIT_ALARM_TIME, alarmTimeStr);
         habit.put(Constants.KEY_HABIT_TIMESTAMP, LocalDateTime.now().toString());
 
-        database.collection(Constants.KEY_COLLECTION_HABITS)
+        database.collection(Constants.KEY_COLLECTION_USERS)
+                .document(preferenceManager.getString(Constants.KEY_USER_ID))
+                .collection(Constants.KEY_COLLECTION_HABITS)
                 .add(habit)
                 .addOnSuccessListener(documentReference -> {
                     Log.d(Constants.TAG, "createHabit()::success");

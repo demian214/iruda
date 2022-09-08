@@ -57,6 +57,7 @@ public class HabitListActivity extends AppCompatActivity implements OnHabitItemC
 
     @Override
     public void onHabitClick(HabitAdapter.ViewHolder viewHolder, View view, int position) {
+        Log.d(Constants.TAG, "onHabitClick::habit ID:" + position +", "+ adapter.getItem(position).getContent());
         Intent intent = new Intent(getApplicationContext(), HabitDetailActivity.class);
         intent.putExtra(Constants.KEY_HABIT, adapter.getItem(position));
         startActivity(intent);
@@ -79,7 +80,9 @@ public class HabitListActivity extends AppCompatActivity implements OnHabitItemC
     private void getHabitsFromDatabase(){
         loading(true);
         database = FirebaseFirestore.getInstance();
-            database.collection(Constants.KEY_COLLECTION_HABITS)
+            database.collection(Constants.KEY_COLLECTION_USERS)
+                    .document(preferenceManager.getString(Constants.KEY_USER_ID))
+                    .collection(Constants.KEY_COLLECTION_HABITS)
                     .get()
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful() && task.getResult() != null){
@@ -95,9 +98,10 @@ public class HabitListActivity extends AppCompatActivity implements OnHabitItemC
                                         if (queryDocumentSnapshot.getString(Constants.KEY_HABIT_ALARM_TIME) != null) {
                                             alarmTime = LocalTime.parse(queryDocumentSnapshot.getString(Constants.KEY_HABIT_ALARM_TIME));
                                         }
+                                        Log.d(Constants.TAG, "Habit ID:" + queryDocumentSnapshot.getId());
                                         Habit habit = new Habit(queryDocumentSnapshot.getId(), title, content, timestamp, alarmTime);
                                         habits.add(habit);
-                                        Log.d(Constants.TAG, "getHabitsFromDatabase():Habit ID:" + queryDocumentSnapshot.getId());
+                                        Log.d(Constants.TAG, "getHabitsFromDatabase():Habit Info:" + queryDocumentSnapshot.getId() + ", " + title + ", " + content + ", " + timestamp + ", " + alarmTime);
                                     }
                                     habits.sort(Comparator.comparing(Habit::getTimestamp));
                                     adapter = new HabitAdapter(habits, this);

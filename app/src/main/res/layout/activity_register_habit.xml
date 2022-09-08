@@ -8,7 +8,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:overScrollMode="never">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -47,42 +48,74 @@
                     android:elevation="6dp"
                     android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/editHabitTitle"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:orientation="horizontal"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="18dp"
                         android:layout_marginRight="20dp"
-                        android:layout_marginBottom="18dp"
-                        android:ems="10"
-                        android:fontFamily="@font/noto_sans_kr_regular"
-                        android:hint="@string/hint_habit_title"
-                        android:includeFontPadding="false"
-                        android:inputType="text"
-                        android:letterSpacing="-0.02"
-                        android:textColor="#393939"
-                        android:textColorHint="#b4b4b4"
-                        android:textSize="14sp" />
+                        android:layout_marginBottom="18dp">
 
-                    <EditText
-                        android:id="@+id/editHabitContent"
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="20dp"
+                            android:background="#707070"/>
+
+                        <EditText
+                            android:id="@+id/editHabitTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="3dp"
+                            android:background="@null"
+                            android:ems="10"
+                            android:fontFamily="@font/noto_sans_kr_regular"
+                            android:hint="@string/hint_habit_title"
+                            android:includeFontPadding="false"
+                            android:inputType="text"
+                            android:letterSpacing="-0.02"
+                            android:textColor="#393939"
+                            android:textColorHint="#b4b4b4"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/background3"/>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:minHeight="42dp"
+                        android:orientation="horizontal"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="18dp"
                         android:layout_marginRight="20dp"
-                        android:layout_marginBottom="18dp"
-                        android:ems="10"
-                        android:fontFamily="@font/noto_sans_kr_regular"
-                        android:hint="@string/hint_habit_content"
-                        android:includeFontPadding="false"
-                        android:inputType="textMultiLine"
-                        android:letterSpacing="-0.02"
-                        android:lines="2"
-                        android:textColor="#393939"
-                        android:textColorHint="#b4b4b4"
-                        android:textSize="14sp" />
+                        android:layout_marginBottom="18dp">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="20dp"
+                            android:background="#707070"/>
+
+                        <EditText
+                            android:id="@+id/editHabitContent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="3dp"
+                            android:background="@null"
+                            android:ems="10"
+                            android:fontFamily="@font/noto_sans_kr_regular"
+                            android:hint="@string/hint_habit_content"
+                            android:includeFontPadding="false"
+                            android:inputType="textMultiLine"
+                            android:letterSpacing="-0.02"
+                            android:textColor="#393939"
+                            android:textColorHint="#b4b4b4"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -133,6 +166,11 @@
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/background3"/>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -203,19 +241,14 @@
             </LinearLayout>
         </ScrollView>
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="@color/transparent"
-            app:contentInsetStart="0dp">
-
-            <ImageButton
-                android:id="@+id/buttonBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:src="@drawable/ic_back"/>
-        </androidx.appcompat.widget.Toolbar>
+    <ImageButton
+        android:id="@+id/buttonBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        android:layout_gravity="start|top"
+        android:visibility="visible"
+        android:background="@color/transparent"
+        android:src="@drawable/ic_back"/>
 
 </FrameLayout>

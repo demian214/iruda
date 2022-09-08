@@ -14,8 +14,8 @@ public class Habit implements Serializable {
 
     public Habit() {}
 
-    public Habit(String userId, String title, String content, LocalDateTime timestamp, LocalTime alarmTime) {
-        this.userId = userId;
+    public Habit(String id, String title, String content, LocalDateTime timestamp, LocalTime alarmTime) {
+        this.id = id;
         this.title = title;
         this.content = content;
         this.timestamp = timestamp;

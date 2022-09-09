@@ -21,7 +21,6 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder> 
     private OnDiaryItemClickListener listener;
     private static Boolean isEmojiView = false;
 
-
     public DiaryAdapter(ArrayList<Diary> items, OnDiaryItemClickListener listener) {
         this.items = items;
         this.listener = listener;
@@ -70,20 +69,14 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder> 
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
-        DateItemBinding binding;
-//        public boolean select = false;
-        public int oldPosition = -1;
-        public int selectedPosition = -1;
-
+        public DateItemBinding binding;
 
         public ViewHolder(@NonNull DateItemBinding binding, final OnDiaryItemClickListener listener) {
             super(binding.getRoot());
             this.binding = binding;
 
-
             binding.getRoot().setOnClickListener(view -> {
                 int position = getAdapterPosition();
-
                 if(listener != null){
                     listener.onDiaryClick(ViewHolder.this, view, position);
                 }
@@ -95,6 +88,7 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder> 
             binding.textDate.setText(++position + "");
 
             if (item != null){
+
                 if (isEmojiView){
                     if (item.getContent() != null){
                         binding.textDate.setVisibility(View.INVISIBLE);

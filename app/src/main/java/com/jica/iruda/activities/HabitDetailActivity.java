@@ -35,8 +35,8 @@ public class HabitDetailActivity extends AppCompatActivity implements OnDiaryIte
     private DiaryAdapter adapter;
     private Habit habit;
     private ArrayList<Diary> diaries;
-    private int selectedPosition = -1;
-    private int oldPosition = -1;
+    private int prevPosition = -1;
+    private DiaryAdapter.ViewHolder prevViewHolder = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,12 +91,13 @@ public class HabitDetailActivity extends AppCompatActivity implements OnDiaryIte
         if (adapter.getItem(position) != null && adapter.getItem(position).getContent() != null){
             Diary item = adapter.getItem(position);
 
-            if (selectedPosition != position){
-                viewHolder.setItemClicked(item.getAchievement());
-                selectedPosition = position;
-            } else {
-
+            if (prevPosition != -1) {
+                prevViewHolder.setItemInit(adapter.getItem(prevPosition));
             }
+
+            viewHolder.setItemClicked(item.getAchievement());
+            prevPosition = position;
+            prevViewHolder = viewHolder;
 
             // 다이어리 상세내용 시작
             binding.diaryContainer.setVisibility(View.VISIBLE);
@@ -105,6 +106,7 @@ public class HabitDetailActivity extends AppCompatActivity implements OnDiaryIte
             TypedArray emojies = binding.getRoot().getResources().obtainTypedArray(R.array.emojies);
             binding.imageEmoji.setImageDrawable(emojies.getDrawable(item.getEmogiIndex()));
             binding.textDiaryContent.setText(item.getContent());
+            binding.imageDiary.setVisibility(View.GONE);
             if (item.getImageUrl() != null){
                 binding.imageDiary.setVisibility(View.VISIBLE);
                 Glide.with(this).load(item.getImageUrl()).into(binding.imageDiary);

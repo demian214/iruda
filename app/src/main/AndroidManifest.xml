@@ -4,6 +4,8 @@
     package="com.jica.iruda">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <!--  Android 11에서 공유 대화 상자가 열리지 않습니다. 어떻게 수정해야 하나요?  -->
     <queries>

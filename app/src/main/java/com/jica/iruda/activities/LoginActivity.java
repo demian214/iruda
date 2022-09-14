@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.jica.iruda.R;
 import com.jica.iruda.databinding.ActivityLoginBinding;
 import com.jica.iruda.utilities.Constants;
@@ -50,6 +51,18 @@ public class LoginActivity extends AppCompatActivity {
         KakaoSdk.init(this, getResources().getString(R.string.kakao_app_key)); // 카카오 초기화
 
         setListeners();
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        Log.w(Constants.TAG, "Fetching FCM registration token failed", task.getException());
+                        return;
+                    }
+
+                    // Get new FCM registration token
+                    String token = task.getResult();
+                    Log.d(Constants.TAG, "TOKEN:" + token);
+                });
     }
 
     private void setListeners(){
@@ -70,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void signInGoogle() {
+        Log.d(Constants.TAG, "signInGoogle()");
         Intent signInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, Constants.GOOGLE_SIGN_IN);
     }
@@ -77,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        Log.d(Constants.TAG, "onActivityResult()::requestCode:" + requestCode);
         if (requestCode == Constants.GOOGLE_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
@@ -93,6 +107,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void firebaseAuthWithGoogle(String idToken) {
+        Log.d(Constants.TAG, "firebaseAuthWithGoogle()");
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         firebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, task -> {

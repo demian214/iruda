@@ -1,5 +1,7 @@
 package com.jica.iruda.activities;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.jica.iruda.AlarmReceiver;
 import com.jica.iruda.adapters.HabitAdapter;
 import com.jica.iruda.databinding.ActivityHabitListBinding;
 import com.jica.iruda.listeners.OnHabitItemClickListener;
@@ -22,15 +25,17 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class HabitListActivity extends AppCompatActivity implements OnHabitItemClickListener {
 
     private ActivityHabitListBinding binding;
     private PreferenceManager preferenceManager;
-    private FirebaseFirestore database;
     private HabitAdapter adapter;
+    private ArrayList<Habit> habits;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,8 @@ public class HabitListActivity extends AppCompatActivity implements OnHabitItemC
         preferenceManager = new PreferenceManager(getApplicationContext());
         setListeners();
         init();
+
+
     }
 
     private void init(){
@@ -79,7 +86,7 @@ public class HabitListActivity extends AppCompatActivity implements OnHabitItemC
     // https://www.geeksforgeeks.org/how-to-read-data-from-firebase-firestore-in-android/ 참고 사이트
     private void getHabitsFromDatabase(){
         loading(true);
-        database = FirebaseFirestore.getInstance();
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
             database.collection(Constants.KEY_COLLECTION_USERS)
                     .document(preferenceManager.getString(Constants.KEY_USER_ID))
                     .collection(Constants.KEY_COLLECTION_HABITS)
@@ -87,7 +94,7 @@ public class HabitListActivity extends AppCompatActivity implements OnHabitItemC
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful() && task.getResult() != null){
                             Log.d(Constants.TAG, "getHabitsFromDatabase():success");
-                            ArrayList<Habit> habits = new ArrayList<>();
+                            habits = new ArrayList<>();
                                 if (!task.getResult().isEmpty()) {
                                     for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
 
@@ -115,6 +122,37 @@ public class HabitListActivity extends AppCompatActivity implements OnHabitItemC
                             }
                         }
                     );
+    }
+
+    private void setAlarm(Habit habit){
+        if (habit == null){
+            return;
+        }
+
+        // Receiver 설정
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        intent.putExtra(Constants.KEY_HABIT, habit);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        // 알람 설정
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
+        calendar.set(Calendar.HOUR_OF_DAY, habit.getAlarmTime().getHour());
+        calendar.set(Calendar.MINUTE, habit.getAlarmTime().getMinute());
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        Calendar now = Calendar.getInstance();
+        if(calendar.before(now) || now.getTime() == calendar.getTime()){
+            calendar.add(Calendar.DATE, 1);
+        }
+
+        alarmManager.setExactAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP,
+                calendar.getTimeInMillis(),
+                pendingIntent);
     }
 
     private void loading(Boolean isLoading){

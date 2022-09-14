@@ -32,4 +32,6 @@ public class Constants {
 
     public static final int GOOGLE_SIGN_IN = 9001; // 구글 로그인 request code
     public static final int FACEBOOK_SIGN_IN = 64206; // 페이스북 로그인 request code
+    public static final String CHANNEL_ID = "chAlarm";
+    public static final String CHANNEL_NAME = "chAlarm";
 }

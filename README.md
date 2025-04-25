@@ -1,5 +1,5 @@
 # iruda
-Anroid Application
+Android Application
 Final project in JICA
 
 
